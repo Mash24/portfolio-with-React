@@ -11,7 +11,7 @@ const HeroSlide = ({ slide, isActive }) => {
       `}
     >
       {/* SLIDE CONTAINER */}
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative w-full min-h-[85vh] md:h-[90vh] overflow-hidden">
 
         {/* ========== IMAGE BACKGROUND (mobile) ========== */}
         <div className="block md:hidden absolute inset-0">

@@ -10,7 +10,7 @@ const stats = [
 
 const CounterSection = () => {
   return (
-    <section className="bg-[#f8f9fa] py-10 -mt-8" id="section-counter">
+    <section className="bg-[#f8f9fa] py-10 md:py-10 -mt-10 md:-mt-20" id="section-counter">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
           {stats.map((stat, index) => (
