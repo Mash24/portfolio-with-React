@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-50 bg-white/80 backdrop-blur-md shadow">
+    <nav
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/90 shadow backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
@@ -17,13 +32,13 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 text-sm uppercase font-semibold text-gray-700 tracking-wide">
-            <Link to="/" className="hover:text-green-600 transition duration-200">Home</Link>
-            <Link to="/about" className="hover:text-green-600 transition duration-200">About</Link>
-            <Link to="/skills" className="hover:text-green-600 transition duration-200">Skills</Link>
-            <Link to="/services" className="hover:text-green-600 transition duration-200">Services</Link>
-            <Link to="/projects" className="hover:text-green-600 transition duration-200">Projects</Link>
-            <Link to="/blog" className="hover:text-green-600 transition duration-200">Blog</Link>
-            <Link to="/contact" className="hover:text-green-600 transition duration-200">Contact</Link>
+            <Link to="/" className="hover:text-green-600 transition">Home</Link>
+            <Link to="/about" className="hover:text-green-600 transition">About</Link>
+            <Link to="/skills" className="hover:text-green-600 transition">Skills</Link>
+            <Link to="/services" className="hover:text-green-600 transition">Services</Link>
+            <Link to="/projects" className="hover:text-green-600 transition">Projects</Link>
+            <Link to="/blog" className="hover:text-green-600 transition">Blog</Link>
+            <Link to="/contact" className="hover:text-green-600 transition">Contact</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -33,12 +48,7 @@ const Navbar = () => {
               className="text-gray-800 hover:text-green-600 focus:outline-none"
               aria-label="Toggle menu"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -49,9 +59,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown */}
         {isOpen && (
-          <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800">
+          <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800 bg-white/90 backdrop-blur-md shadow">
             <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-green-600">Home</Link>
             <Link to="/about" onClick={() => setIsOpen(false)} className="hover:text-green-600">About</Link>
             <Link to="/skills" onClick={() => setIsOpen(false)} className="hover:text-green-600">Skills</Link>

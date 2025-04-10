@@ -1,5 +1,5 @@
 import Navbar from '../components/layout/Navbar'
-import Hero from '../components/hero/Hero'
+import HeroSection from '../components/hero/HeroSection'
 import About from '../components/about/About'
 import MySkills from '../components/my_skills/MySkills'
 import Services from '../components/services/Services'
@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Hero />
+      <HeroSection />
       <CounterSection />
       <About />
       <MySkills />

@@ -49,22 +49,16 @@ const Testimonials = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
         breakpoint: 1024,
-        settings: {
-          slidesToShow: 2, // Medium & small devices: 2 cards
-        },
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 640,
-        settings: {
-          slidesToShow: 2, // Mobile devices: 2 cards instead of 1
-        },
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1 },
       },
     ],
   };
@@ -88,18 +82,19 @@ const Testimonials = () => {
 
         <Slider {...settings}>
           {testimonials.map((t, index) => (
-            <div key={index} className="flex justify-center px-2">
-              <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-sm h-[360px] flex flex-col justify-between transition-all duration-300 hover:shadow-xl">
+            <div key={index} className="flex justify-center px-1"> 
+              <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-sm h-[360px] flex flex-col transition-all duration-300 hover:shadow-xl">
+
                 {/* CARD CONTENT */}
-                <div className="text-left mb-6">
+                <div className="text-left mb-2">
                   <Quote className="text-lime-600 w-6 h-6 mb-4" />
                   <p className="text-gray-700 text-[15px] leading-relaxed line-clamp-6">
                     {t.text}
                   </p>
                 </div>
-
-                {/* CARD FOOTER */}
-                <div className="flex items-center gap-4 mt-auto">
+                
+                     {/* CARD FOOTER */}
+                <div className="mt-auto flex items-center gap-4 pt-4 border-t border-gray-100">
                   {t.image ? (
                     <img
                       src={t.image}
