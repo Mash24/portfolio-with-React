@@ -77,7 +77,7 @@ my_porfolio/
 
 ## Screenshots
 
-![Home Page](/public/images/bg_2.jpg)
+![Home Page](/public/images/bg_13-9.png)
 ![Projects Section](/public/images/work-1.jpg)
 ![Skills Section](/public/images/bg_13.jpg)
 
