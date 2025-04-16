@@ -54,7 +54,7 @@ const services = [
 
 const Projects = () => {
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services-section" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="text-center mb-12">
           <p className="text-lime-600 uppercase tracking-widest font-semibold">What I Do</p>

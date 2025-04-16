@@ -18,7 +18,7 @@ const HeroSlide = ({ slide, isActive }) => {
           <img
             src={image}
             alt="Hero Background"
-            className="w-full h-full object-cover filter grayscale"
+            className="w-full h-full object-cover md:filter md:grayscale"
           />
           {/* Optional dark overlay for readability */}
           <div className="absolute inset-0 bg-black bg-opacity-30" />
@@ -36,6 +36,7 @@ const HeroSlide = ({ slide, isActive }) => {
               {heading[0]}{' '}
               <span className="text-[#b0b495]">{heading[1]}</span>
             </h1>
+            
             {/* Buttons */}
             <div className="flex sm:flex-row gap-4 justify-center md:justify-start mt-8 md:mt-6 sm:mt-10 sm:mb-4">
               <a

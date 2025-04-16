@@ -13,7 +13,7 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white" id='projects-section'>
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
 
         <div className="text-center mb-12">

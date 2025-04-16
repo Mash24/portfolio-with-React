@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +10,6 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -27,21 +25,23 @@ const Navbar = () => {
           {/* Logo Section */}
           <div className="text-xl sm:text-2xl font-extrabold uppercase leading-tight tracking-wider text-gray-900">
             JACKSON <br className="hidden sm:block" />
-            <span className="text-green-500">MWAKANO<span className="text-red-500">.</span></span>
+            <span className="text-green-500">
+              MWAKANO<span className="text-red-500">.</span>
+            </span>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8 text-sm uppercase font-semibold text-gray-700 tracking-wide">
-            <Link to="/" className="hover:text-green-600 transition">Home</Link>
-            <Link to="/about" className="hover:text-green-600 transition">About</Link>
-            <Link to="/skills" className="hover:text-green-600 transition">Skills</Link>
-            <Link to="/services" className="hover:text-green-600 transition">Services</Link>
-            <Link to="/projects" className="hover:text-green-600 transition">Projects</Link>
-            <Link to="/blog" className="hover:text-green-600 transition">Blog</Link>
-            <Link to="/contact" className="hover:text-green-600 transition">Contact</Link>
+            <a href="#home-section" className="hover:text-green-600 transition">Home</a>
+            <a href="#about-section" className="hover:text-green-600 transition">About</a>
+            <a href="#skills-section" className="hover:text-green-600 transition">Skills</a>
+            <a href="#services-section" className="hover:text-green-600 transition">Services</a>
+            <a href="#projects-section" className="hover:text-green-600 transition">Projects</a>
+            <a href="#blog-section" className="hover:text-green-600 transition">Blog</a>
+            <a href="#contact-section" className="hover:text-green-600 transition">Contact</a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Toggle Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -62,13 +62,13 @@ const Navbar = () => {
         {/* Mobile Dropdown */}
         {isOpen && (
           <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800 bg-white/90 backdrop-blur-md shadow">
-            <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-green-600">Home</Link>
-            <Link to="/about" onClick={() => setIsOpen(false)} className="hover:text-green-600">About</Link>
-            <Link to="/skills" onClick={() => setIsOpen(false)} className="hover:text-green-600">Skills</Link>
-            <Link to="/services" onClick={() => setIsOpen(false)} className="hover:text-green-600">Services</Link>
-            <Link to="/projects" onClick={() => setIsOpen(false)} className="hover:text-green-600">Projects</Link>
-            <Link to="/blog" onClick={() => setIsOpen(false)} className="hover:text-green-600">Blog</Link>
-            <Link to="/contact" onClick={() => setIsOpen(false)} className="hover:text-green-600">Contact</Link>
+            <a href="#home-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Home</a>
+            <a href="#about-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">About</a>
+            <a href="#skills-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Skills</a>
+            <a href="#services-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Services</a>
+            <a href="#projects-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Projects</a>
+            <a href="#blog-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Blog</a>
+            <a href="#contact-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Contact</a>
           </div>
         )}
       </div>

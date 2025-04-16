@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white" id="about-section">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
 
@@ -39,22 +39,22 @@ const About = () => {
               <li><strong>Phone:</strong> <span className="text-lime-600">+66-95-281-9402</span></li>
             </ul>
 
-            <div className="flex flex-wrap gap-4 mt-8">
-              <div className="flex items-center gap-2">
-                <span className="bg-lime-600 text-white rounded-full w-10 h-10 flex justify-center items-center">🎧</span>
-                <span className="font-semibold">Music</span>
+            <div className="flex gap-2 justify-center md:justify-start mt-6 flex-nowwrap overflow-x-auto whitespace-nowrap">
+              <div className="flex items-center gap-1">
+                <span className="bg-lime-600 text-white rounded-full w-8 h-8 flex justify-center items-center text-sm">🎧</span>
+                <span className="font-medium text-sm">Music</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-lime-600 text-white rounded-full w-10 h-10 flex justify-center items-center">✈️</span>
-                <span className="font-semibold">Travel</span>
+              <div className="flex items-center gap-1">
+                <span className="bg-lime-600 text-white rounded-full w-8 h-8 flex justify-center items-center text-sm">✈️</span>
+                <span className="font-medium text-sm">Travel</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-lime-600 text-white rounded-full w-10 h-10 flex justify-center items-center">🎬</span>
-                <span className="font-semibold">Movies</span>
+              <div className="flex items-center gap-1">
+                <span className="bg-lime-600 text-white rounded-full w-8 h-8 flex justify-center items-center text-sm">🎬</span>
+                <span className="font-medium text-sm">Movies</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="bg-lime-600 text-white rounded-full w-10 h-10 flex justify-center items-center">⚽</span>
-                <span className="font-semibold">Sports</span>
+              <div className="flex items-center gap-1">
+                <span className="bg-lime-600 text-white rounded-full w-8 h-8 flex justify-center items-center text-sm">⚽</span>
+                <span className="font-medium text-sm">Sports</span>
               </div>
             </div>
 

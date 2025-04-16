@@ -32,7 +32,7 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <section id="blog" className="bg-gray-100 py-20 px-4">
+    <section id="blog-section" className="bg-gray-100 py-20 px-4">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <p className="uppercase text-sm tracking-widest text-lime-600 font-semibold mb-2">Blog</p>
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Insights & Tutorials</h2>

@@ -4,7 +4,7 @@ import { MailIcon } from 'lucide-react';
 
 const ContactForm = () => {
   return (
-    <section className="bg-lime-200/70 py-4">
+    <section className="bg-lime-200/70 py-4" id='contact-section'>
       {/* Outer Rounded Wrapper */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
