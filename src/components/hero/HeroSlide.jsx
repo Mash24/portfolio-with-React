@@ -25,10 +25,10 @@ const HeroSlide = ({ slide, isActive }) => {
         </div>
 
         {/* ========== FLEX LAYOUT ========== */}
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-full px-6 md:px-12 py-0 relative z-10">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full h-full px-6 md:px-12 py-12 relative z-10">
           
           {/* TEXT SECTION */}
-          <div className="w-full md:w-1/2 space-y-4 text-center md:text-left text-white md:text-black">
+          <div className="w-full md:w-1/2 space-y-6 text-center md:text-left text-white md:text-black mt-56 sm:mt-36">
             <p className="text-sm uppercase tracking-widest text-gray-300 md:text-gray-500 font-medium">
               {subheading}
             </p>
@@ -36,7 +36,8 @@ const HeroSlide = ({ slide, isActive }) => {
               {heading[0]}{' '}
               <span className="text-[#b0b495]">{heading[1]}</span>
             </h1>
-            <div className="flex gap-4 mt-6 justify-center md:justify-start">
+            {/* Buttons */}
+            <div className="flex sm:flex-row gap-4 justify-center md:justify-start mt-8 md:mt-6 sm:mt-10 sm:mb-4">
               <a
                 href="https://www.linkedin.com/in/jackson-macharia-7433751b6/"
                 target="_blank"
