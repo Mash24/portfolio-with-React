@@ -4,11 +4,11 @@ const About = () => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
 
           {/* Left Image Section */}
           {/* <!______________________________________________________________________________________> */}
-          <div className="w-full md:w-5/12 bg-gray-100 rounded-xl flex justify-center items-center p-6">
+          <div className="hidden md:flex md:w-5/12 bg-gray-100 rounded-xl justify-center items-center p-6">
             <img
               src="/images/about_1-3.jpg"
               alt="About Jackson"

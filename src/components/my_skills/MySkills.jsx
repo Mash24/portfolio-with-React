@@ -23,11 +23,11 @@ const MySkills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transform hover:scale-105 transition duration-500 ease-in-out"
+              className="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center text-center transform hover:scale-105 transition duration-500 ease-in-out"
             >
               <h3 className="text-xl font-bold mb-4 text-gray-900">{skill.name}</h3>
 

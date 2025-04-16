@@ -29,7 +29,7 @@ const HeroSlide = ({ slide, isActive }) => {
           
           {/* TEXT SECTION */}
           <div className="w-full md:w-1/2 space-y-6 text-center md:text-left text-white md:text-black mt-56 sm:mt-36">
-            <p className="text-sm uppercase tracking-widest text-gray-300 md:text-gray-500 font-medium">
+            <p className="text-sm uppercase tracking-widest text-white md:text-gray-500 font-semibold px-2 py-1 inline-block bg-black/.5 text-white rounded-sm drop-blur-sm">
               {subheading}
             </p>
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
