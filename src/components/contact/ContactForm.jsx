@@ -4,18 +4,18 @@ import { MailIcon } from 'lucide-react';
 
 const ContactForm = () => {
   return (
-    <section className="bg-lime-200/70 py-4" id='contact-section'>
+    <section className="bg-lime-200/70 py-2" id='contact-section'>
       {/* Outer Rounded Wrapper */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
           {/* LEFT TEXT */}
           <div className="md:w-2/3 text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
               Got a project or idea? Let's build <br /> something <span className="text-white">awesome</span>.
             </h2>
-            <p className="text-gray-800 text-lg mb-6 leading-relaxed">
-              I help individuals and businesses turn ideas into real, user-focused websites and apps.
-              Whether it's a landing page, a full web app, or UI improvements, I'm here to help you succeed.
+            <p className="text-gray-800 text-sm sm:text-base mb-6 leading-relaxed">
+              I help individuals and businesses turn ideas into real, user-focused websites and cloud-powered applications.
+              Whether it's a dynamic frontend, Firebase-powered backend, or full CI/CD integration, I'm ready to deliver scalable, production-grade solutions.
             </p>
 
             <div className="flex items-center gap-3 justify-center md:justify-start text-gray-700 mb-4">

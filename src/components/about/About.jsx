@@ -19,15 +19,15 @@ const About = () => {
           {/* Right Text Section */}
           <div className="w-full md:w-7/12">
             <span className="uppercase tracking-widest text-sm font-semibold text-lime-600">
-              My Intro
+              Who I Am
             </span>
             <h2 className="text-4xl font-bold mb-6">About Me</h2>
 
             <p className="text-gray-600 mb-4">
-              Hello! I'm Jackson M Macharia, a dedicated frontend developer with strong skills in HTML, CSS, JavaScript, and ReactJS. I'm currently enhancing my backend skills by learning both Python and Java. I’m also pursuing my Bachelor’s degree in Computer Science at the University of the People.
+              Hello! I'm Jackson M Macharia — a dedicated Junior - Cloud Support Engineer and full-stack developer with a strong foundation in HTML, CSS, JavaScript, and ReactJS. While I started my journey in frontend development, I’m now actively transitioning into Cloud Infrastructure and DevOps, with hands-on experience in AWS, Firebase, CI/CD pipelines, and cloud-native deployments.
             </p>
             <p className="text-gray-600 mb-6">
-              I enjoy turning ideas into real, user-friendly interfaces and creating web solutions that are both functional and beautiful. My biggest ongoing project is a full-featured international job-matching platform that connects employers with job seekers worldwide. I'm passionate about tech that solves real-world problems.
+              I'm currently pursuing my second degree in Computer Science at the University of the People (USA), while also building production-grade cloud applications like <strong>Job Connect</strong> — a full-featured platform with role-based dashboards, authentication, real-time messaging, and GitHub-integrated CI/CD deployment. I'm passionate about solving real-world problems using scalable, secure technologies. Whether it’s building intuitive UIs or deploying serverless infrastructure, I’m driven by the impact of what I build.
             </p>
 
             <ul className="space-y-2 text-gray-800 font-medium">

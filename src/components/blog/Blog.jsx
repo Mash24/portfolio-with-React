@@ -1,66 +1,74 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const blogPosts = [
   {
-    title: "From HTML to React: My Web Dev Journey",
-    date: "April 02, 2025",
+    slug: "cloud-journey",
+    title: "How I Started My Cloud Journey: From Web Dev to Cloud Engineer",
+    date: "April 12, 2025",
     author: "Jackson",
-    comments: 3,
+    comments: 5,
     image: "/images/image_1.jpg",
     excerpt:
-      "A personal look into how I moved from static websites to building full React apps with Firebase and real-time features.",
+      "My transition story from building front-end apps to deploying scalable infrastructure using AWS, Docker, and CI/CD pipelines.",
   },
   {
-    title: "Using Firebase Auth with React (The Easy Way)",
-    date: "March 21, 2025",
+    slug: "cloud-tools-2025",
+    title: "Top 5 Tools Every Cloud Engineer Should Master in 2025",
+    date: "March 29, 2025",
     author: "Jackson",
-    comments: 2,
+    comments: 3,
     image: "/images/image_2.jpg",
     excerpt:
-      "Learn how I implemented Firebase authentication, role-based access, and redirects in a job-matching app.",
+      "An overview of the essential tools—AWS, Terraform, Kubernetes, GitHub Actions—that boosted my career in cloud and DevOps engineering.",
   },
   {
-    title: "Why Every Beginner Should Learn Git & GitHub",
-    date: "February 18, 2025",
+    slug: "ci-cd-basics",
+    title: "Demystifying CI/CD: How I Automated My First Deployment",
+    date: "March 14, 2025",
     author: "Jackson",
     comments: 4,
     image: "/images/image_3.jpg",
     excerpt:
-      "Git changed how I work. Here's how version control has saved me time, protected my code, and helped me grow as a developer.",
+      "A beginner-friendly guide to understanding Continuous Integration and Deployment pipelines, with practical examples.",
   },
 ];
 
 const Blog = () => {
   return (
-    <section id="blog-section" className="bg-gray-100 py-20 px-4">
+    <section id="blog-section" className="bg-gray-50 py-20 px-4 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <p className="uppercase text-sm tracking-widest text-lime-600 font-semibold mb-2">Blog</p>
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Insights & Tutorials</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          I occasionally share thoughts, tips, and lessons from my development journey—especially things I wish I had learned earlier.
+        <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+          I regularly share practical tips, project lessons, and cloud engineering tutorials—written for beginners moving into Cloud and DevOps roles.
         </p>
       </div>
 
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow hover:shadow-lg transition-all duration-300"
+            className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col"
           >
             <div
-              className="h-56 bg-cover bg-center rounded-t-lg"
+              className="h-48 sm:h-56 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
               style={{ backgroundImage: `url(${post.image})` }}
             ></div>
-            <div className="p-6 text-left">
-              <div className="text-sm text-gray-500 mb-2">
-                <span className="mr-2">{post.date}</span>
-                <span className="mr-2">| {post.author}</span>
-                <span className="mr-2">| 💬 {post.comments}</span>
+            <div className="p-5 text-left flex flex-col flex-grow">
+              <div className="text-xs text-gray-400 mb-2">
+                {post.date} • {post.author} • 💬 {post.comments}
               </div>
-              <h3 className="font-semibold text-lg text-gray-900 hover:text-lime-600 mb-2">
+              <h3 className="font-bold text-lg text-gray-900 group-hover:text-lime-600 leading-snug mb-2">
                 {post.title}
               </h3>
-              <p className="text-gray-600 text-sm">{post.excerpt}</p>
+              <p className="text-gray-600 text-sm mb-4 flex-grow">{post.excerpt}</p>
+              <Link
+                to={`/blog/${post.slug}`}
+                className="inline-flex items-center text-sm text-lime-700 font-semibold hover:underline mt-auto"
+              >
+                Read More →
+              </Link>
             </div>
           </div>
         ))}

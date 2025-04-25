@@ -11,7 +11,7 @@ const HeroSlide = ({ slide, isActive }) => {
       `}
     >
       {/* SLIDE CONTAINER */}
-      <div className="relative w-full min-h-[85vh] md:h-[90vh] overflow-hidden">
+      <div className="relative w-full min-h-[85vh] md:h-[90vh] overflow-hidden lg:mt-[-3rem]">
 
         {/* ========== IMAGE BACKGROUND (mobile) ========== */}
         <div className="block md:hidden absolute inset-0">
@@ -28,11 +28,11 @@ const HeroSlide = ({ slide, isActive }) => {
         <div className="flex flex-col-reverse md:flex-row items-center justify-center w-full h-full px-6 md:px-12 py-12 relative z-10">
           
           {/* TEXT SECTION */}
-          <div className="w-full md:w-1/2 space-y-6 text-center md:text-left text-white md:text-black mt-56 sm:mt-36">
+          <div className="w-full md:w-1/2 space-y-6 text-center md:text-left text-white md:text-black mt-56 sm:mt-36 lg:pl-20 xl:pl-28 px-4">
             <p className="text-sm uppercase tracking-widest text-white md:text-gray-500 font-semibold px-2 py-1 inline-block bg-black/.5 text-white rounded-sm drop-blur-sm">
               {subheading}
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+            <h1 className="text-xl sm:text-2xl md:text-4xl font-extrabold leading-tight">
               {heading[0]}{' '}
               <span className="text-[#b0b495]">{heading[1]}</span>
             </h1>
@@ -40,7 +40,7 @@ const HeroSlide = ({ slide, isActive }) => {
             {/* Buttons */}
             <div className="flex sm:flex-row gap-4 justify-center md:justify-start mt-8 md:mt-6 sm:mt-10 sm:mb-4">
               <a
-                href="https://www.linkedin.com/in/jackson-macharia-7433751b6/"
+                href="https://www.linkedin.com/in/jackson-macharia/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#b0b495] text-white px-6 py-2 rounded-md text-sm font-semibold"

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Quote } from "lucide-react";
+import { Quote, ChevronDown } from "lucide-react";
 
 const testimonials = [
   {
@@ -38,6 +38,9 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -54,67 +57,107 @@ const Testimonials = () => {
       },
       {
         breakpoint: 640,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
         settings: { slidesToShow: 1 },
       },
     ],
   };
 
   return (
-    <section
-      className="bg-lime-200 py-16 px-4 sm:px-6 lg:px-10 rounded-xl mx-4 sm:mx-6 lg:mx-8"
-      id="testimonials"
-    >
+    <section className="bg-lime-200 py-16 px-4 sm:px-6 lg:px-10 rounded-xl mx-4 sm:mx-6 lg:mx-8 overflow-hidden" id="testimonials">
       <div className="max-w-6xl mx-auto text-center">
-        <h5 className="uppercase text-sm font-semibold tracking-widest text-lime-800 mb-2">
-          Testimonials
-        </h5>
-        <h2 className="text-4xl font-extrabold mb-4 text-gray-900">
-          What My Clients Say
-        </h2>
-        <p className="text-gray-700 mb-12 max-w-2xl mx-auto text-base">
-          Real feedback from clients I’ve worked with on web design, frontend
-          development, and complete web app solutions.
+        <h5 className="uppercase text-sm font-semibold tracking-widest text-lime-800 mb-2">Testimonials</h5>
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 text-gray-900">What My Clients Say</h2>
+        <p className="text-gray-700 mb-12 max-w-2xl mx-auto text-sm sm:text-base">
+          Real feedback from clients I’ve worked with on cloud support, full-stack web applications, and frontend UI/UX projects.
         </p>
 
         <Slider {...settings}>
           {testimonials.map((t, index) => (
-            <div key={index} className="flex justify-center px-1"> 
-              <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-sm h-[360px] flex flex-col transition-all duration-300 hover:shadow-xl">
-
-                {/* CARD CONTENT */}
+            <div key={index} className="flex justify-center px-2">
+              <div className="bg-white rounded-2xl shadow-lg p-5 sm:p-6 w-full max-w-sm min-h-[240px] flex flex-col border border-lime-100 hover:border-lime-300 transition duration-300">
                 <div className="text-left mb-2">
-                  <Quote className="text-lime-600 w-6 h-6 mb-4" />
-                  <p className="text-gray-700 text-[15px] leading-relaxed line-clamp-6">
+                  <Quote className="text-lime-600 w-5 h-5 mb-2" />
+                  <p className="text-gray-700 text-sm leading-relaxed line-clamp-5">
                     {t.text}
                   </p>
                 </div>
-                
-                     {/* CARD FOOTER */}
-                <div className="mt-auto flex items-center gap-4 pt-4 border-t border-gray-100">
+                <div className="mt-auto flex items-center gap-3 pt-3 border-t border-gray-200">
                   {t.image ? (
                     <img
                       src={t.image}
                       alt={t.name}
-                      className="w-12 h-12 rounded-full object-cover border border-lime-300"
+                      className="w-10 h-10 rounded-full object-cover border border-lime-300"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-full bg-lime-600 text-white font-bold flex items-center justify-center text-xl">
+                    <div className="w-10 h-10 rounded-full bg-lime-600 text-white font-bold flex items-center justify-center text-sm">
                       {t.name.charAt(0)}
                     </div>
                   )}
                   <div>
-                    <p className="text-gray-900 font-semibold text-sm">{t.name}</p>
-                    <p className="text-gray-500 text-xs">{t.role}</p>
+                    <p className="text-gray-900 font-semibold text-sm leading-none">{t.name}</p>
+                    <p className="text-gray-500 text-xs leading-none mt-0.5">{t.role}</p>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </Slider>
+
+        {/* Toggleable Testimonial Form */}
+        <div className="mt-12 text-left max-w-xl mx-auto">
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="flex items-center gap-2 text-lime-700 font-semibold hover:underline focus:outline-none"
+          >
+            <ChevronDown className={`transition-transform duration-300 ${showForm ? 'rotate-180' : ''}`} />
+            {showForm ? 'Hide Testimonial Form' : 'Leave a Testimonial'}
+          </button>
+
+          {showForm && (
+            <div className="mt-6 bg-white rounded-xl p-6 shadow-md">
+              <h3 className="text-lg font-bold text-gray-900 mb-3">Leave a Testimonial</h3>
+              <p className="text-sm text-gray-600 mb-4">I'd love to hear your feedback and experience working with me.</p>
+              <form
+                className="space-y-4"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSubmitted(true);
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm"
+                />
+                <input
+                  type="text"
+                  placeholder="Your Role"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm"
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm bg-white file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-lime-600 file:text-white hover:file:bg-lime-700"
+                />
+                <textarea
+                  placeholder="Your Message"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm h-24 resize-none"
+                ></textarea>
+                <button
+                  disabled
+                  className="bg-lime-600 text-white py-2 px-6 rounded-md text-sm font-semibold cursor-pointer opacity-60"
+                >
+                  Submit
+                </button>
+                {submitted && (
+                  <div className="text-green-600 text-sm font-medium mt-3">
+                    Thank you! Your testimonial has been received.
+                  </div>
+                )}
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -4,11 +4,11 @@ import HeroSlider from './HeroSlider';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative w-full min-h-screen">
       {/* <DiagonalLines />      Decorative lines (don't move) */}
       <HeroSlider />
     </section>
-  );
+  ); 
 };
 
 export default HeroSection;
