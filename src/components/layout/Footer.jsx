@@ -38,7 +38,10 @@ const Footer = () => {
                   href={`#${item.toLowerCase()}-section`}
                   className="flex items-center gap-2 hover:text-white"
                 >
-                  <ChevronRight size={14} />
+                  {/* Show ChevronRight ONLY on large screens */}
+                  <span className="hidden lg:inline-flex">
+                    <ChevronRight size={14} />
+                  </span>
                   {item}
                 </a>
               </li>
@@ -104,7 +107,7 @@ const Footer = () => {
       {/* Bottom */}
       <div className="text-center text-sm text-gray-400 mt-10">
         <p>
-          &copy; {new Date().getFullYear()} Jackson Macharia | Portfolio Project.
+          &copy; {new Date().getFullYear()} Jackson Mwakano | Portfolio Project.
         </p>
         
       </div>
