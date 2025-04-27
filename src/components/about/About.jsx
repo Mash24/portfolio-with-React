@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * About Component
+ * - Displays personal biography, professional background, and contact information
+ * - Split into two sections: Left (image) and Right (text content)
+ */
 const About = () => {
   return (
     <section className="py-16 bg-white" id="about-section">
@@ -18,11 +23,13 @@ const About = () => {
 
           {/* Right Text Section */}
           <div className="w-full md:w-7/12">
+            {/* Section Heading */}
             <span className="uppercase tracking-widest text-sm font-semibold text-lime-600">
               Who I Am
             </span>
             <h2 className="text-4xl font-bold mb-6">About Me</h2>
 
+            {/* Bio Paragraphs */}
             <p className="text-gray-600 mb-4">
               Hello! I'm Jackson M Macharia — a dedicated Junior - Cloud Support Engineer and full-stack developer with a strong foundation in HTML, CSS, JavaScript, and ReactJS. While I started my journey in frontend development, I’m now actively transitioning into Cloud Infrastructure and DevOps, with hands-on experience in AWS, Firebase, CI/CD pipelines, and cloud-native deployments.
             </p>
@@ -30,6 +37,7 @@ const About = () => {
               I'm currently pursuing my second degree in Computer Science at the University of the People (USA), while also building production-grade cloud applications like <strong>Job Connect</strong> — a full-featured platform with role-based dashboards, authentication, real-time messaging, and GitHub-integrated CI/CD deployment. I'm passionate about solving real-world problems using scalable, secure technologies. Whether it’s building intuitive UIs or deploying serverless infrastructure, I’m driven by the impact of what I build.
             </p>
 
+            {/* Personal Information List */}
             <ul className="space-y-2 text-gray-800 font-medium">
               <li><strong>Name:</strong> <span className="text-lime-600">Jackson M Macharia</span></li>
               <li><strong>Date of birth:</strong> <span className="text-lime-600">October 15, 1996</span></li>
@@ -39,7 +47,9 @@ const About = () => {
               <li><strong>Phone:</strong> <span className="text-lime-600">+66-95-281-9402</span></li>
             </ul>
 
-            <div className="flex gap-2 justify-center md:justify-start mt-6 flex-nowwrap overflow-x-auto whitespace-nowrap">
+            {/* Interests Section */}
+            <div className="flex gap-2 justify-center md:justify-start mt-6 flex-nowrap overflow-x-auto whitespace-nowrap">
+              {/* Each interest with an icon and label */}
               <div className="flex items-center gap-1">
                 <span className="bg-lime-600 text-white rounded-full w-8 h-8 flex justify-center items-center text-sm">🎧</span>
                 <span className="font-medium text-sm">Music</span>

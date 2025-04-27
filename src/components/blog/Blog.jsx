@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Blog posts data
+ * - Each post includes a slug, title, date, author, comment count, image, and excerpt
+ */
 const blogPosts = [
   {
     slug: "cloud-journey",
@@ -34,9 +38,15 @@ const blogPosts = [
   },
 ];
 
+/**
+ * Blog Component
+ * - Displays a grid of blog posts with a title, excerpt, and link to full post
+ */
 const Blog = () => {
   return (
     <section id="blog-section" className="bg-gray-50 py-20 px-4 overflow-hidden">
+      
+      {/* Section Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
         <p className="uppercase text-sm tracking-widest text-lime-600 font-semibold mb-2">Blog</p>
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Insights & Tutorials</h2>
@@ -45,24 +55,35 @@ const Blog = () => {
         </p>
       </div>
 
+      {/* Blog Posts Grid */}
       <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((post, index) => (
           <div
             key={index}
             className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group flex flex-col"
           >
+            {/* Blog Post Image */}
             <div
               className="h-48 sm:h-56 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
               style={{ backgroundImage: `url(${post.image})` }}
             ></div>
+
+            {/* Blog Post Content */}
             <div className="p-5 text-left flex flex-col flex-grow">
+              {/* Meta Information */}
               <div className="text-xs text-gray-400 mb-2">
                 {post.date} • {post.author} • 💬 {post.comments}
               </div>
+
+              {/* Blog Title */}
               <h3 className="font-bold text-lg text-gray-900 group-hover:text-lime-600 leading-snug mb-2">
                 {post.title}
               </h3>
+
+              {/* Blog Excerpt */}
               <p className="text-gray-600 text-sm mb-4 flex-grow">{post.excerpt}</p>
+
+              {/* Read More Link */}
               <Link
                 to={`/blog/${post.slug}`}
                 className="inline-flex items-center text-sm text-lime-700 font-semibold hover:underline mt-auto"
@@ -73,6 +94,7 @@ const Blog = () => {
           </div>
         ))}
       </div>
+
     </section>
   );
 };

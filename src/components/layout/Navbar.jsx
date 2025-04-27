@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
+/**
+ * Navbar component for the portfolio site.
+ * Features:
+ * - Sticky navigation bar that changes style on scroll
+ * - Responsive design with desktop menu and mobile dropdown menu
+ */
 const Navbar = () => {
+  // State to manage mobile menu open/close
   const [isOpen, setIsOpen] = useState(false);
+  // State to manage navbar background change on scroll
   const [scrolled, setScrolled] = useState(false);
 
-  // Detect scroll
+  // Detects scroll event to toggle navbar background
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
     window.addEventListener('scroll', handleScroll);
+
+    // Clean up event listener on unmount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -30,7 +41,7 @@ const Navbar = () => {
             </span>
           </div>
 
-          {/* Desktop Menu */}
+          {/* Desktop Navigation Menu */}
           <div className="hidden md:flex items-center gap-8 text-sm uppercase font-semibold text-gray-700 tracking-wide">
             <a href="#home-section" className="hover:text-green-600 transition">Home</a>
             <a href="#about-section" className="hover:text-green-600 transition">About</a>
@@ -41,7 +52,7 @@ const Navbar = () => {
             <a href="#contact-section" className="hover:text-green-600 transition">Contact</a>
           </div>
 
-          {/* Mobile Toggle Button */}
+          {/* Mobile Menu Toggle Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -50,8 +61,10 @@ const Navbar = () => {
             >
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isOpen ? (
+                  // X icon when menu is open
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
+                  // Hamburger icon when menu is closed
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
@@ -59,7 +72,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown Menu */}
         {isOpen && (
           <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800 bg-white/90 backdrop-blur-md shadow">
             <a href="#home-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Home</a>

@@ -1,9 +1,16 @@
 // src/components/hero/HeroSlider.jsx
+
 import React, { useEffect, useState } from 'react';
 import HeroSlide from './HeroSlide';
+
+// Import hero background images
 import hero1 from '../../assets/bg_13-9.png';
 import hero2 from '../../assets/bg_13-9.png';
 
+/**
+ * Slide data for the HeroSlider
+ * - Each slide includes an image, subheading, heading text, and call-to-action (CTA) buttons
+ */
 const slides = [
   {
     image: hero1,
@@ -25,23 +32,37 @@ const slides = [
   },
 ];
 
+/**
+ * HeroSlider Component
+ * - Cycles through hero slides automatically
+ * - Supports manual navigation (future: dot navigation is commented out)
+ */
 const HeroSlider = () => {
+  // Track the index of the current active slide
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Automatically cycle through slides every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
+
+    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
+      {/* Render all slides, but only the active one is fully visible */}
       {slides.map((slide, index) => (
         <HeroSlide key={index} slide={slide} isActive={index === currentSlide} />
       ))}
 
-      {/* Dot Navigation
+      {/* 
+      Dot Navigation (Optional Future Feature)
+      Uncomment the section below to enable manual slide navigation dots
+      */}
+      {/*
       <div className="absolute bottom-2 sm:bottom-6 md:bottom-8 lg:bottom-10 xl:bottom-12 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
         {slides.map((_, idx) => (
           <div
@@ -54,7 +75,8 @@ const HeroSlider = () => {
             }`}
           />
         ))}
-      </div> */}
+      </div>
+      */}
     </div>
   );
 };

@@ -2,6 +2,10 @@ import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+/**
+ * Skills data
+ * - Each skill has a name, proficiency percentage, and a short description
+ */
 const skills = [
   { name: 'AWS Cloud', percentage: 40, desc: 'Hands-on with core AWS services including EC2, S3, IAM, and serverless app deployment via AWS Free Tier.' },
   { name: 'Firebase', percentage: 75, desc: 'Integrated real-time databases, authentication, and cloud hosting in production apps using Firebase.' },
@@ -14,10 +18,17 @@ const skills = [
   { name: 'Python', percentage: 25, desc: 'Currently learning Python for scripting, backend development, and cloud automation.' }
 ];
 
+/**
+ * MySkills Component
+ * - Displays a categorized list of technical skills with animated circular progress bars
+ * - Includes skill names, proficiency percentages, and short descriptions
+ */
 const MySkills = () => {
   return (
     <section className="py-16 bg-gray-50" id='skills-section'>
       <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
+        
+        {/* Section Header */}
         <div className="text-center mb-12">
           <span className="text-lime-600 uppercase tracking-widest font-semibold text-sm sm:text-base">Skills</span>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">My Skills</h2>
@@ -26,14 +37,17 @@ const MySkills = () => {
           </p>
         </div>
 
+        {/* Skills Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {skills.map((skill, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
             >
+              {/* Skill Name */}
               <h3 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">{skill.name}</h3>
 
+              {/* Circular Progress Bar */}
               <div className="w-24 h-24 sm:w-28 sm:h-28 mb-4">
                 <CircularProgressbar
                   value={skill.percentage}
@@ -48,6 +62,7 @@ const MySkills = () => {
                 />
               </div>
 
+              {/* Skill Description */}
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{skill.desc}</p>
             </div>
           ))}

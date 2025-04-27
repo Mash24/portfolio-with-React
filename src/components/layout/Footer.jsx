@@ -9,11 +9,17 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+/**
+ * Footer Component
+ * - Displays contact information, services offered, navigation links, and social media icons
+ * - Structured into four columns with a responsive layout
+ */
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-16 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Column 1 */}
+
+        {/* Column 1: Let's Connect */}
         <div className="text-center lg:text-left">
           <h3 className="text-white font-bold text-lg mb-4">Let’s Connect</h3>
           <p className="text-sm mb-4">
@@ -28,7 +34,7 @@ const Footer = () => {
           </a>
         </div>
 
-        {/* Column 2 */}
+        {/* Column 2: Quick Links */}
         <div className="text-center lg:text-left">
           <h3 className="text-white font-bold text-lg mb-4">Quick Links</h3>
           <ul className="flex flex-wrap justify-center gap-4 text-sm lg:flex-col lg:space-y-2">
@@ -38,7 +44,7 @@ const Footer = () => {
                   href={`#${item.toLowerCase()}-section`}
                   className="flex items-center gap-2 hover:text-white"
                 >
-                  {/* Show ChevronRight ONLY on large screens */}
+                  {/* Chevron icon only visible on large screens */}
                   <span className="hidden lg:inline-flex">
                     <ChevronRight size={14} />
                   </span>
@@ -49,7 +55,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 3 */}
+        {/* Column 3: Services Offered */}
         <div className="text-center lg:text-left">
           <h3 className="text-white font-bold text-lg mb-4">What I Offer</h3>
           <ul className="space-y-2 text-sm">
@@ -67,29 +73,36 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 4 */}
+        {/* Column 4: Contact Information */}
         <div className="text-center lg:text-left">
           <h3 className="text-white font-bold text-lg mb-4">Contact Info</h3>
           <ul className="flex flex-wrap justify-center gap-4 text-sm lg:flex-col lg:space-y-3">
+
+            {/* Location */}
             <li className="flex items-center gap-2">
               <MapPin className="w-5 h-5 text-lime-400" />
               Chiang Mai, Thailand
             </li>
+
+            {/* Phone */}
             <li className="flex items-center gap-2">
               <Phone className="w-5 h-5 text-lime-400" />
               <a href="tel:+66952819402" className="hover:text-white">
                 +66 95-281-9402
               </a>
             </li>
+
+            {/* Email */}
             <li className="flex items-center gap-2">
               <Mail className="w-5 h-5 text-lime-400" />
               <a href="mailto:jackmwakano@gmail.com" className="hover:text-white">
                 jackmwakano@gmail.com
               </a>
             </li>
+
           </ul>
 
-          {/* Social Icons */}
+          {/* Social Media Icons */}
           <div className="flex gap-4 mt-4 text-gray-400 justify-center lg:justify-start">
             <a href="#" className="hover:text-white">
               <Twitter />
@@ -102,14 +115,14 @@ const Footer = () => {
             </a>
           </div>
         </div>
+
       </div>
 
-      {/* Bottom */}
+      {/* Bottom Footer Text */}
       <div className="text-center text-sm text-gray-400 mt-10">
         <p>
           &copy; {new Date().getFullYear()} Jackson Mwakano | Portfolio Project.
         </p>
-        
       </div>
     </footer>
   );
