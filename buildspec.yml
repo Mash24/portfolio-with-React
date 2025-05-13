@@ -13,8 +13,9 @@ phases:
       - echo Building the React app...
       - npm run build
 
-  test:
+  post_build:
     commands:
+      - echo Build completed on $(date)
       - echo Running tests...
       - npm test -- --watchAll=false
 
