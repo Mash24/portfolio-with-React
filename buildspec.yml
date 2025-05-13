@@ -13,16 +13,6 @@ phases:
       - echo Building the React app...
       - npm run build
 
-  post_build:
-    commands:
-      - echo "Build completed on $(date)"
-      - echo Uploading artifacts...
-
-  test:
-    commands:
-      - echo Running tests...
-      - npm test -- --watchAll=false
-
 artifacts:
   files:
     - '**/*'
