@@ -13,6 +13,11 @@ phases:
       - echo Building the React app...
       - npm run build
 
+  test:
+    commands:
+      - echo Running tests...
+      - npm test -- --watchAll=false
+
 artifacts:
   files:
     - '**/*'
