@@ -1,81 +1,106 @@
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { HiArrowDown } from 'react-icons/hi';
 
-// // Replace with your actual image paths
-// import slide1 from "/images/bg_13-9.png";
-// import slide2 from "/images/bg_12-3.png";
+const Hero = () => {
+  return (
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-lime-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000" />
+      </div>
 
-// const slides = [
-//   {
-//     heading: "HELLO! THIS IS JACKSON",
-//     title: "Passionate",
-//     highlight: "Developer",
-//     subtitle: "Exploring the Digital World",
-//     image: slide1,
-//   },
-//   {
-//     heading: "I DESIGN & BUILD BRANDS",
-//     title: "Hi, I am",
-//     highlight: "Jackson",
-//     subtitle: "This is my favorite work.",
-//     image: slide2,
-//   },
-// ];
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              <span className="block">Hi, I'm Jackson</span>
+              <span className="block text-lime-600 mt-2">Full Stack Developer</span>
+              <span className="block text-gray-600 text-2xl sm:text-3xl mt-4">Cloud Computing & DevOps Enthusiast</span>
+            </h1>
+          </motion.div>
 
-// const Hero = () => {
-//   const settings = {
-//     dots: false,
-//     arrows: false,
-//     infinite: true,
-//     speed: 1000,
-//     autoplay: true,
-//     autoplaySpeed: 6000,
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     fade: true,
-//   };
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
+          >
+            Passionate about building scalable web applications and cloud infrastructure.
+            Currently transitioning into Cloud Computing and DevOps while developing
+            full-stack solutions with React, Firebase, and AWS.
+          </motion.p>
 
-//   return (
-//     <section id="home-section" className="mt-20 relative z-0 overflow-hidden">
-//       <Slider {...settings}>
-//         {slides.map((slide, index) => (
-//           <div key={index} className="flex flex-col md:flex-row items-center justify-between px-6 md:px-20 h-[90vh] relative z-10">
-            
-//             {/* LEFT TEXT */}
-//             <div className="w-full md:w-1/2 text-center md:text-left z-20">
-//               <p className="text-sm uppercase font-semibold tracking-widest text-lime-600 mb-2">{slide.heading}</p>
-//               <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
-//                 {slide.title} <span className="text-lime-600">{slide.highlight}</span><br />
-//                 {slide.subtitle}
-//               </h1>
-//               <div className="flex gap-4 justify-center md:justify-start">
-//                 <button className="bg-lime-600 text-white px-6 py-2 rounded font-semibold hover:bg-lime-700 transition">
-//                   Hire me
-//                 </button>
-//                 <button className="border border-lime-600 text-lime-600 px-6 py-2 rounded font-semibold hover:bg-lime-100 transition">
-//                   Download CV
-//                 </button>
-//               </div>
-//             </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+          >
+            <a
+              href="#contact"
+              className="px-8 py-3 bg-lime-600 text-white rounded-lg font-semibold hover:bg-lime-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+            >
+              Get in Touch
+            </a>
+            <a
+              href="#projects"
+              className="px-8 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl border border-gray-200"
+            >
+              View Projects
+            </a>
+          </motion.div>
 
-//             {/* RIGHT IMAGE */}
-//             <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
-//               {/* <!______________________________________________________________________________________> */}
-//               <img
-//                 src={slide.image}
-//                 alt="Jackson Hero"
-//                 className="h-[500px] object-contain object-center"
-//               />
-//             </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex justify-center gap-6 mb-12"
+          >
+            <a
+              href="https://github.com/Mash24"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            >
+              <FaGithub className="w-6 h-6" />
+            </a>
+            <a
+              href="https://linkedin.com/in/jacksonmacharia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            >
+              <FaLinkedin className="w-6 h-6" />
+            </a>
+            <a
+              href="https://twitter.com/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+            >
+              <FaTwitter className="w-6 h-6" />
+            </a>
+          </motion.div>
 
-//             {/* Diagonal overlay line */}
-//             <div className="absolute top-0 left-[35%] w-1 h-[150%] rotate-[25deg] bg-gray-300 opacity-20 z-0" />
-//           </div>
-//         ))}
-//       </Slider>
-//     </section>
-//   );
-// };
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          >
+            <HiArrowDown className="w-6 h-6 text-gray-400 animate-bounce" />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-// export default Hero;
+export default Hero;

@@ -1,27 +1,21 @@
 import React from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
 /**
- * Skills data
- * - Each skill has a name, proficiency percentage, and a short description
+ * Categorized Technical Skills
  */
-const skills = [
-  { name: 'AWS Cloud', percentage: 40, desc: 'Hands-on with core AWS services including EC2, S3, IAM, and serverless app deployment via AWS Free Tier.' },
-  { name: 'Firebase', percentage: 75, desc: 'Integrated real-time databases, authentication, and cloud hosting in production apps using Firebase.' },
-  { name: 'GitHub Actions (CI/CD)', percentage: 50, desc: 'Configuring deployment pipelines using GitHub Actions for continuous integration and delivery.' },
-  { name: 'ReactJS', percentage: 80, desc: 'Building modern, responsive web apps with clean components and dynamic user interfaces.' },
-  { name: 'HTML', percentage: 95, desc: 'Expert in writing clean, semantic HTML5 to build accessible and well-structured layouts.' },
-  { name: 'CSS | TailwindCSS', percentage: 85, desc: 'Proficient in responsive styling using CSS3, with hands-on experience in Tailwind and Bootstrap frameworks.' },
-  { name: 'JavaScript', percentage: 70, desc: 'Proficient in clean, functional JavaScript for both vanilla and React-based applications.' },
-  { name: 'Linux | CLI Tools', percentage: 30, desc: 'Basic command-line skills for navigating and managing cloud servers and deployment environments.' },
-  { name: 'Python', percentage: 25, desc: 'Currently learning Python for scripting, backend development, and cloud automation.' }
-];
+const skills = {
+  Frontend: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'JavaScript'],
+  Backend: ['Firebase', 'Node.js (learning)', 'Python (learning)'],
+  'Cloud & DevOps': ['AWS (EC2, VPC, S3, IAM)', 'Jenkins', 'GitHub Actions'],
+  Database: ['Firestore', 'SQLite'],
+  'Tools & Platforms': ['Vercel', 'GitHub', 'VS Code', 'Linux terminal', 'Postman'],
+  Other: ['Responsive Design', 'REST APIs', 'CI/CD basics', 'WebSockets'],
+  'Currently Learning': ['Terraform', 'Docker', 'Kubernetes (planned next)'],
+};
 
 /**
  * MySkills Component
- * - Displays a categorized list of technical skills with animated circular progress bars
- * - Includes skill names, proficiency percentages, and short descriptions
+ * - Displays a categorized list of technical skills
  */
 const MySkills = () => {
   return (
@@ -31,39 +25,22 @@ const MySkills = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="text-lime-600 uppercase tracking-widest font-semibold text-sm sm:text-base">Skills</span>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">My Skills</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Technical Skills</h2>
           <p className="text-gray-500 max-w-3xl mx-auto text-sm sm:text-base">
-            I specialize in frontend and cloud development, using tools like ReactJS, Firebase, AWS, and GitHub Actions to build scalable, secure, and user-focused applications. Below is a snapshot of my evolving skill set as I transition into Cloud Support Engineering:
+            Here is a comprehensive list of my technical skills, covering various domains including frontend, backend, cloud, and DevOps tools.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
-            >
-              {/* Skill Name */}
-              <h3 className="text-lg sm:text-xl font-bold mb-4 text-gray-900">{skill.name}</h3>
-
-              {/* Circular Progress Bar */}
-              <div className="w-24 h-24 sm:w-28 sm:h-28 mb-4">
-                <CircularProgressbar
-                  value={skill.percentage}
-                  text={`${skill.percentage}%`}
-                  strokeWidth={5}
-                  styles={buildStyles({
-                    pathColor: '#a3e635',
-                    textColor: '#111827',
-                    trailColor: '#d1d5db',
-                    textSize: '18px',
-                  })}
-                />
-              </div>
-
-              {/* Skill Description */}
-              <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">{skill.desc}</p>
+        {/* Skills Categories */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {Object.entries(skills).map(([category, skillList]) => (
+            <div key={category} className="bg-white shadow-md rounded-lg p-6">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">{category}</h3>
+              <ul className="list-disc list-inside space-y-2 text-gray-700">
+                {skillList.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

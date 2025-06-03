@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, Phone, Mail, Globe, Send } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 /**
  * ContactMe Component
@@ -14,7 +15,7 @@ const ContactMe = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="uppercase text-sm text-lime-700 font-semibold tracking-wider">Contact Me</span>
-          <h2 className="text-4xl font-bold mt-2 text-gray-900">Let’s Collaborate or Chat</h2>
+          <h2 className="text-4xl font-bold mt-2 text-gray-900">Let's Collaborate or Chat</h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base">
             <span className="text-green-600">Got a project?</span> DevOps challenge, or just want to network? 
             I'm open to freelance gigs, mentorship, or full-time roles in Cloud and Engineering.
@@ -72,11 +73,22 @@ const ContactMe = () => {
               <MapPin className="text-lime-600 w-6 h-6 mt-1" />
               <div>
                 <p className="font-semibold text-gray-700">Location</p>
-                <p className="text-gray-600 text-sm">Chiang Mai, Thailand</p>
+                <p className="text-gray-600 text-sm">Thailand (Open to remote or relocation)</p>
               </div>
             </div>
 
-            {/* Phone */}
+            {/* Email */}
+            <div className="flex items-start gap-4">
+              <Mail className="text-lime-600 w-6 h-6 mt-1" />
+              <div>
+                <p className="font-semibold text-gray-700">Email</p>
+                <a href="mailto:jacksonmacharia.dev@example.com" className="text-lime-700 text-sm hover:underline">
+                  jacksonmacharia.dev@example.com {/* placeholder */}
+                </a>
+              </div>
+            </div>
+
+            {/* Phone - Keep existing phone if still valid/desired, otherwise remove */}
             <div className="flex items-start gap-4">
               <Phone className="text-lime-600 w-6 h-6 mt-1" />
               <div>
@@ -87,31 +99,44 @@ const ContactMe = () => {
               </div>
             </div>
 
-            {/* Email */}
-            <div className="flex items-start gap-4">
-              <Mail className="text-lime-600 w-6 h-6 mt-1" />
+            {/* GitHub */}
+             <div className="flex items-start gap-4">
+              <FaGithub className="text-lime-600 w-6 h-6 mt-1" />
               <div>
-                <p className="font-semibold text-gray-700">Email</p>
-                <a href="mailto:jackmwakano@gmail.com" className="text-lime-700 text-sm hover:underline">
-                  jackmwakano@gmail.com
+                <p className="font-semibold text-gray-700">GitHub</p>
+                 <a href="https://github.com/Mash24" target="_blank" rel="noopener noreferrer" className="text-lime-700 text-sm hover:underline">
+                  github.com/Mash24
                 </a>
               </div>
             </div>
 
-            {/* Website */}
-            <div className="flex items-start gap-4">
-              <Globe className="text-lime-600 w-6 h-6 mt-1" />
+             {/* LinkedIn */}
+             <div className="flex items-start gap-4">
+              <FaLinkedin className="text-lime-600 w-6 h-6 mt-1" />
               <div>
-                <p className="font-semibold text-gray-700">Website</p>
-                <a
-                  href="https://iamjackson.netlify.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lime-700 text-sm hover:underline"
-                >
-                  iamjackson.netlify.app
+                <p className="font-semibold text-gray-700">LinkedIn</p>
+                 <a href="https://linkedin.com/in/jacksonmacharia" target="_blank" rel="noopener noreferrer" className="text-lime-700 text-sm hover:underline">
+                  linkedin.com/in/jacksonmacharia {/* update with correct link */}
                 </a>
               </div>
+            </div>
+
+            {/* Add Resume Download Link/Info if desired here, maybe link to the About section button */}
+             {/* <div className="flex items-start gap-4">
+              <FileText className="text-lime-600 w-6 h-6 mt-1" />
+              <div>
+                <p className="font-semibold text-gray-700">Resume</p>
+                 <a href="/your-cv.pdf" download className="text-lime-700 text-sm hover:underline">
+                  Download PDF
+                </a>
+              </div>
+            </div> */}
+
+            {/* Let's Connect Paragraph */}
+            <div className="mt-8 pt-6 border-t border-gray-200">
+              <p className="text-gray-700 text-sm leading-relaxed">
+                 Open to freelance projects and contractual roles, DevOps setups, internships, or remote engineering roles. Let's build something impactful together!
+              </p>
             </div>
 
           </div>

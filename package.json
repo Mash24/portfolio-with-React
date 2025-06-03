@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
+    "framer-motion": "^12.12.1",
     "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-circular-progressbar": "^2.2.0",
