@@ -1,4 +1,5 @@
 import React from 'react';
+// Tech stack icons import
 import { FaReact, FaNodeJs, FaPython, FaAws, FaGithub, FaDocker } from 'react-icons/fa';
 import { SiNextdotjs, SiTailwindcss, SiFirebase, SiJenkins, SiTerraform, SiKubernetes, SiVercel, SiPostman, SiVisualstudiocode, SiSqlite, SiLinux } from 'react-icons/si';
 import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io5';
