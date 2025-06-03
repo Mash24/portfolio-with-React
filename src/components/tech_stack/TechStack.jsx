@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaReact, FaNodeJs, FaPython, FaAws, FaGithub, FaDocker } from 'react-icons/fa';
-import { SiNextdotjs, SiTailwindcss, SiFirebase, SiJenkins, SiTerraform, SiKubernetes, SiVercel, SiPostman, SiVscode, SiSqlite, SiLinux } from 'react-icons/si';
+import { SiNextdotjs, SiTailwindcss, SiFirebase, SiJenkins, SiTerraform, SiKubernetes, SiVercel, SiPostman, SiVisualstudiocode, SiSqlite, SiLinux } from 'react-icons/si';
 import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io5';
 
 const techStack = [
@@ -19,7 +19,7 @@ const techStack = [
   { name: 'Firestore', icon: SiFirebase, color: '#FFCA28' }, // Using Firebase icon
   { name: 'SQLite', icon: SiSqlite, color: '#003B57' },
   { name: 'Vercel', icon: SiVercel, color: '#000000' },
-  { name: 'VS Code', icon: SiVscode, color: '#007ACC' },
+  { name: 'VS Code', icon: SiVisualstudiocode, color: '#007ACC' },
   { name: 'Linux', icon: SiLinux, color: '#FCC624' },
   { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
   { name: 'Terraform', icon: SiTerraform, color: '#7B42BC' },
