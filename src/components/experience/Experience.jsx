@@ -4,42 +4,56 @@ import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const experiences = [
   {
-    title: "Full Stack Developer",
+    title: "Full-Stack Developer",
     company: "Nexus Loop AI",
-    period: "2023 - Present",
+    period: "May 2025 – Present",
     location: "Remote",
     description: [
-      "Leading development of a production-grade AI training platform using Next.js 14, NestJS, and PostgreSQL",
-      "Implemented role-based access control and JWT authentication",
-      "Architected monorepo structure using Turborepo for efficient development",
-      "Integrated real-time workflows and database operations"
+      "Designed and built a production-grade AI training and task management platform with real-time workflows and scalable architecture.",
+      "Led development using a monorepo architecture powered by Turborepo, with modular packages for API, DB, UI, and configuration.",
+      "Built a secure backend with NestJS, featuring role-based access control, JWT auth, Prisma ORM, caching, and validation.",
+      "Developed the frontend using Next.js 14, TailwindCSS, shadcn/ui, and schema-safe forms with react-hook-form and zod.",
+      "Deployed services via Vercel, Docker, and Render, and configured CI/CD pipelines for automated testing and deployment.",
+      "Implemented PostgreSQL database workflows with Prisma Migrate, Studio, and shared schema via @nexusloop/db.",
+      "Created reusable design systems and shared types across the stack to ensure consistency and type safety."
     ],
-    techStack: ["Next.js 14", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Docker"]
+    techStack: ["Next.js 14", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Docker", "Turborepo", "TailwindCSS", "shadcn/ui", "Render", "Vercel", "GitHub Actions"]
   },
   {
-    title: "Full Stack Developer",
+    title: "Full-Stack Developer",
     company: "Charity Connect",
-    period: "2023 - Present",
+    period: "April 2025 – Present",
     location: "Remote",
     description: [
-      "Developed a global donation platform with role-based access and real-time data sync",
-      "Implemented secure authentication and admin dashboard",
-      "Built responsive UI with TailwindCSS and modern React practices"
+      "Building a donation platform using Next.js, Firebase, and Vercel for global material and cash donations.",
+      "Implementing role-based access, real-time data sync, and secure authentication.",
+      "Scaling backend features and admin dashboard with modular UI components and Firestore."
     ],
     techStack: ["Next.js", "Firebase", "TailwindCSS", "Vercel"]
   },
   {
-    title: "Full Stack Developer",
+    title: "DevOps Support Engineer",
     company: "Job Connect",
-    period: "2023 - Present",
+    period: "Jan 2025 – Present",
     location: "Remote",
     description: [
-      "Built a full-featured job-matching platform with real-time chat",
-      "Implemented role-based dashboards and AWS integration",
-      "Developed user onboarding flows and dynamic job postings",
-      "Set up secure file uploads and GitHub-integrated CI/CD"
+      "Developed a job-matching platform with role-based dashboards, real-time messaging, and Firebase Auth.",
+      "Integrated AWS services: S3 for file uploads, CloudWatch for logging, and IAM for secure roles.",
+      "CI/CD pipeline setup using GitHub Actions for automated Firebase deployments."
     ],
     techStack: ["React", "Firebase", "AWS", "TailwindCSS", "GitHub Actions"]
+  },
+  {
+    title: "Frontend Developer",
+    company: "Aboa Vidas",
+    period: "Nov 2023 – Nov 2024",
+    location: "Remote",
+    description: [
+      "Delivered a clean, responsive company website using HTML, CSS, Bootstrap, and JavaScript.",
+      "Focused on mobile-first design, SEO optimization, and client collaboration.",
+      "Deployed project to Netlify with post-launch updates."
+    ],
+    techStack: ["HTML", "CSS", "Bootstrap", "JavaScript", "Netlify"]
   }
 ];
 

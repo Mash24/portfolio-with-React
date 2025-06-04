@@ -23,21 +23,21 @@ const education = [
 
 const certifications = [
   {
-    title: "AWS Certified Cloud Practitioner",
+    title: "AWS Certified Cloud Practitioner (Expected)",
     issuer: "Amazon Web Services",
-    date: "2024",
+    date: "Expected: July 2025",
     icon: "☁️"
   },
   {
-    title: "Google Cloud Fundamentals",
+    title: "Google Cloud Fundamentals (Expected)",
     issuer: "Google Cloud",
-    date: "2023",
+    date: "Expected: July 2025",
     icon: "🌐"
   },
   {
     title: "Full Stack Web Development",
     issuer: "Meta",
-    date: "2023",
+    date: "April 2025",
     icon: "💻"
   }
 ];
