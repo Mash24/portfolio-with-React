@@ -13,6 +13,7 @@ import ContactMe from '../components/contact/ContactMe'
 import Experience from '../components/experience/Experience'
 import Certifications from '../components/certifications/Certifications'
 import TechStack from '../components/tech_stack/TechStack'
+import Education from '../components/education/Education'
 
 const Home = () => {
   return (
@@ -22,6 +23,7 @@ const Home = () => {
       <CounterSection />
       <About />
       <Experience />
+      <Education />
       <Certifications />
       <MySkills />
       <TechStack />

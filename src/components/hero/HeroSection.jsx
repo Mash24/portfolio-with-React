@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { HiArrowDown } from 'react-icons/hi';
+import { TypeAnimation } from 'react-type-animation';
 
 const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Background Elements */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-lime-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
@@ -21,8 +22,24 @@ const HeroSection = () => {
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               <span className="block">Hi, I'm Jackson</span>
-              <span className="block text-lime-600 mt-2">Full Stack Developer</span>
-              <span className="block text-gray-600 text-2xl sm:text-3xl mt-4">Cloud Computing & DevOps Enthusiast</span>
+              <span className="block text-lime-600 mt-2">
+                <TypeAnimation
+                  sequence={[
+                    'Full Stack Developer',
+                    1000,
+                    'Cloud Engineer',
+                    1000,
+                    'DevOps Enthusiast',
+                    1000,
+                  ]}
+                  wrapper="span"
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </span>
+              <span className="block text-gray-600 text-2xl sm:text-3xl mt-4">
+                Building Scalable Web Applications & Cloud Infrastructure
+              </span>
             </h1>
           </motion.div>
 
@@ -33,8 +50,7 @@ const HeroSection = () => {
             className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
           >
             Passionate about building scalable web applications and cloud infrastructure.
-            Currently transitioning into Cloud Computing and DevOps while developing
-            full-stack solutions with React, Firebase, and AWS.
+            Currently leading development at Nexus Loop AI while transitioning into Cloud Computing and DevOps.
           </motion.p>
 
           <motion.div
@@ -45,15 +61,21 @@ const HeroSection = () => {
           >
             <a
               href="#contact"
-              className="px-8 py-3 bg-lime-600 text-white rounded-lg font-semibold hover:bg-lime-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="group px-8 py-3 bg-lime-600 text-white rounded-lg font-semibold hover:bg-lime-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Get in Touch
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                →
+              </span>
             </a>
             <a
               href="#projects"
-              className="px-8 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl border border-gray-200"
+              className="group px-8 py-3 bg-white text-gray-900 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200 transform hover:-translate-y-1"
             >
               View Projects
+              <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                →
+              </span>
             </a>
           </motion.div>
 
@@ -67,7 +89,7 @@ const HeroSection = () => {
               href="https://github.com/Mash24"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="text-gray-600 hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-1"
             >
               <FaGithub className="w-6 h-6" />
             </a>
@@ -75,7 +97,7 @@ const HeroSection = () => {
               href="https://linkedin.com/in/jacksonmacharia"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="text-gray-600 hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-1"
             >
               <FaLinkedin className="w-6 h-6" />
             </a>
@@ -83,7 +105,7 @@ const HeroSection = () => {
               href="https://twitter.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="text-gray-600 hover:text-gray-900 transition-all duration-300 transform hover:-translate-y-1"
             >
               <FaTwitter className="w-6 h-6" />
             </a>
