@@ -9,11 +9,12 @@ import Footer from '../components/layout/Footer'
 import CounterSection from '../components/about/CounterSection'
 import Testimonials from '../components/testimonials/Testimonials'
 import Blog from '../components/blog/Blog'
-import ContactMe from '../components/contact/ContactMe'
+// import ContactMe from '../components/contact/Contact'
 import Experience from '../components/experience/Experience'
 import Certifications from '../components/certifications/Certifications'
 import TechStack from '../components/tech_stack/TechStack'
 import Education from '../components/education/Education'
+import Contact from '../components/contact/Contact'
 
 const Home = () => {
   return (
@@ -32,7 +33,7 @@ const Home = () => {
       <Projects />
       <Testimonials/>
       <Blog/>
-      <ContactMe/>
+      <Contact/>
       <Footer />
     </>
   )
