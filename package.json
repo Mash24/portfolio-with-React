@@ -1,8 +1,11 @@
 {
-  "name": "my_porfolio",
+  "name": "jackson-macharia-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Jackson Mwakano Macharia - Full-Stack Engineer & Founder-Level Builder Portfolio",
+  "author": "Jackson Mwakano Macharia",
+  "homepage": "https://iamjackson.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

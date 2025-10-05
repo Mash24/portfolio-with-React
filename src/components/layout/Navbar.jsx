@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ThemeToggle from '../ui/ThemeToggle';
 
 /**
  * Navbar component for the portfolio site.
@@ -42,14 +43,14 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Menu */}
-          <div className="hidden md:flex items-center gap-8 text-sm uppercase font-semibold text-gray-700 tracking-wide">
-            <a href="#home-section" className="hover:text-green-600 transition">Home</a>
-            <a href="#about-section" className="hover:text-green-600 transition">About</a>
-            <a href="#skills-section" className="hover:text-green-600 transition">Skills</a>
-            <a href="#services-section" className="hover:text-green-600 transition">Services</a>
-            <a href="#projects-section" className="hover:text-green-600 transition">Projects</a>
-            <a href="#blog-section" className="hover:text-green-600 transition">Blog</a>
-            <a href="#contact-section" className="hover:text-green-600 transition">Contact</a>
+          <div className="hidden md:flex items-center gap-8 text-sm uppercase font-semibold text-gray-700 dark:text-gray-300 tracking-wide">
+            <a href="#home-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</a>
+            <a href="#about-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
+            <a href="#experience-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Experience</a>
+            <a href="#skills-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Skills</a>
+            <a href="#projects-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Projects</a>
+            <a href="#contact-section" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact</a>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -74,14 +75,16 @@ const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800 bg-white/90 backdrop-blur-md shadow">
-            <a href="#home-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Home</a>
-            <a href="#about-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">About</a>
-            <a href="#skills-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Skills</a>
-            <a href="#services-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Services</a>
-            <a href="#projects-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Projects</a>
-            <a href="#blog-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Blog</a>
-            <a href="#contact-section" onClick={() => setIsOpen(false)} className="hover:text-green-600">Contact</a>
+          <div className="md:hidden flex flex-col px-4 pb-4 pt-2 space-y-2 text-sm font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow">
+            <a href="#home-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+            <a href="#about-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">About</a>
+            <a href="#experience-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
+            <a href="#skills-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+            <a href="#projects-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+            <a href="#contact-section" onClick={() => setIsOpen(false)} className="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+            <div className="pt-2">
+              <ThemeToggle />
+            </div>
           </div>
         )}
       </div>

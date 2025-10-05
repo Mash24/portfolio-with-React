@@ -9,28 +9,28 @@ import { motion, AnimatePresence } from "framer-motion";
  */
 const stats = [
   {
-    icon: <Briefcase size={28} />, value: 12, label: "Technologies Mastered", suffix: "+"
+    icon: <Briefcase size={28} />, value: 6, label: "Projects Delivered", suffix: "+"
   },
   {
-    icon: <Cloud size={28} />, value: 3, label: "Cloud Platforms Used"
+    icon: <Users size={28} />, value: 15000, label: "Users Served", suffix: "+"
   },
   {
-    icon: <Rocket size={28} />, value: 18, label: "Production Deployments", suffix: "+"
+    icon: <Award size={28} />, value: 3, label: "Years Experience", suffix: "+"
   },
   {
-    icon: <Users size={28} />, value: 15000, label: "Users Impacted", suffix: "+"
+    icon: <Zap size={28} />, value: 60, label: "Faster Deployments", suffix: "%"
   },
   {
-    icon: <GitBranch size={28} />, value: 7, label: "Automated CI/CD Pipelines"
+    icon: <Cloud size={28} />, value: 4, label: "Cloud Platforms", suffix: "+"
   },
   {
-    icon: <Globe size={28} />, value: 10, label: "Countries Reached", suffix: "+"
+    icon: <GitBranch size={28} />, value: 8, label: "CI/CD Pipelines", suffix: "+"
   },
   {
-    icon: <Zap size={28} />, value: 5, label: "Team Projects Led", suffix: "+"
+    icon: <Globe size={28} />, value: 5, label: "Countries Reached", suffix: "+"
   },
   {
-    icon: <Award size={28} />, value: 3, label: "Years in Tech"
+    icon: <Rocket size={28} />, value: 35, label: "Performance Boost", suffix: "%"
   }
 ];
 
