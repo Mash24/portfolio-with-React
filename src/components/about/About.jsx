@@ -57,18 +57,18 @@ const About = () => {
 
             {/* Personal Information Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-semibold text-gray-900 mb-2">Personal Info</h3>
-                <ul className="space-y-2 text-gray-600">
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Personal Info</h3>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm break-words">
                   <li><span className="font-medium">Name:</span> Jackson Mwakano Macharia</li>
                   <li><span className="font-medium">Location:</span> Chiang Mai, Thailand</li>
                   <li><span className="font-medium">Portfolio:</span> iamjackson.vercel.app</li>
                   <li><span className="font-medium">GitHub:</span> github.com/Mash24</li>
                 </ul>
               </div>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-semibold text-gray-900 mb-2">Contact Info</h3>
-                <ul className="space-y-2 text-gray-600">
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Contact Info</h3>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-300 text-sm break-words">
                   <li><span className="font-medium">Email:</span> jackmwakano@gmail.com</li>
                   <li><span className="font-medium">Phone:</span> +66 95-281-9402</li>
                   <li><span className="font-medium">LinkedIn:</span> linkedin.com/in/jackson-macharia</li>
@@ -76,83 +76,89 @@ const About = () => {
                 </ul>
               </div>
             </div>
-
-            {/* Tech Stack Section */}
-            <div className="mt-8">
-              <h3 className="font-semibold text-gray-900 mb-4">Core Tech Stack</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {[
-                  { icon: '⚛️', text: 'React & Next.js' },
-                  { icon: '🔷', text: 'TypeScript' },
-                  { icon: '🗄️', text: 'PostgreSQL & Prisma' },
-                  { icon: '☁️', text: 'Supabase & AWS' },
-                  { icon: '⚡', text: 'CI/CD & Docker' },
-                  { icon: '🎨', text: 'TailwindCSS' },
-                  { icon: '🤖', text: 'AI-Assisted Dev' },
-                  { icon: '📊', text: 'Performance Optimization' }
-                ].map((tech, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 p-3 rounded-lg hover:from-blue-100 hover:to-purple-100 transition-all duration-300 border border-blue-100"
-                  >
-                    <span className="text-lg">{tech.icon}</span>
-                    <span className="text-sm font-medium text-gray-700">{tech.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Professional Focus Section */}
-            <div className="mt-8">
-              <h3 className="font-semibold text-gray-900 mb-4">What Sets Me Apart</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { icon: '🏗️', title: 'System Architecture', desc: 'Design scalable, maintainable systems' },
-                  { icon: '⚡', title: 'CI/CD Automation', desc: 'Reduce deployment time by 60%+' },
-                  { icon: '📊', title: 'Performance Optimization', desc: '35% faster load times' },
-                  { icon: '🔒', title: 'Security & Scalability', desc: 'Multi-tenant SaaS expertise' }
-                ].map((focus, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-white p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-300"
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl">{focus.icon}</span>
-                      <h4 className="font-semibold text-gray-900">{focus.title}</h4>
-                    </div>
-                    <p className="text-sm text-gray-600">{focus.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Download CV Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="mt-8"
-            >
-              <a
-                href="/resume.pdf"
-                download="Jackson_Macharia_Resume.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              >
-                <FaDownload />
-                Download Resume
-              </a>
-            </motion.div>
           </motion.div>
         </div>
+
+        {/* Tech Stack — full width so labels don't overflow the text column */}
+        <div className="mt-12">
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Core Tech Stack</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {[
+              { icon: '⚛️', text: 'React & Next.js' },
+              { icon: '🔷', text: 'TypeScript' },
+              { icon: '🗄️', text: 'PostgreSQL & Prisma' },
+              { icon: '☁️', text: 'Supabase & AWS' },
+              { icon: '⚡', text: 'CI/CD & Docker' },
+              { icon: '🎨', text: 'TailwindCSS' },
+              { icon: '🤖', text: 'AI-Assisted Dev' },
+              { icon: '📊', text: 'Performance Optimization' },
+            ].map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="flex flex-col items-center justify-center gap-2 min-h-[88px] p-3 text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg hover:from-blue-100 hover:to-purple-100 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 transition-all duration-300 border border-blue-100 dark:border-blue-800/50"
+              >
+                <span className="text-xl shrink-0" aria-hidden="true">{tech.icon}</span>
+                <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-200 leading-snug break-words w-full">
+                  {tech.text}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Professional Focus — full width grid */}
+        <div className="mt-10">
+          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">What Sets Me Apart</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: '🏗️', title: 'System Architecture', desc: 'Design scalable, maintainable systems' },
+              { icon: '⚡', title: 'CI/CD Automation', desc: 'Reduce deployment time by 60%+' },
+              { icon: '📊', title: 'Performance Optimization', desc: '35% faster load times' },
+              { icon: '🔒', title: 'Security & Scalability', desc: 'Multi-tenant SaaS expertise' },
+            ].map((focus, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="flex flex-col h-full p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:shadow-md transition-shadow duration-300"
+              >
+                <div className="flex items-start gap-3 mb-2 min-w-0">
+                  <span className="text-2xl shrink-0 leading-none" aria-hidden="true">{focus.icon}</span>
+                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base leading-snug break-words min-w-0">
+                    {focus.title}
+                  </h4>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed break-words">
+                  {focus.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Download CV Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-10"
+        >
+          <a
+            href="/resume.pdf"
+            download="Jackson_Macharia_Resume.pdf"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            <FaDownload />
+            Download Resume
+          </a>
+        </motion.div>
       </div>
     </section>
   );
