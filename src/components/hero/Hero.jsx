@@ -1,216 +1,290 @@
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaRocket, FaCode, FaCloud } from 'react-icons/fa';
-import { HiArrowDown, HiSparkles } from 'react-icons/hi';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaDownload,
+  FaArrowRight,
+} from 'react-icons/fa';
+import { HiArrowDown } from 'react-icons/hi';
 import { TypeAnimation } from 'react-type-animation';
+import {
+  HERO_STATS,
+  HERO_TYPE_SEQUENCE,
+  HERO_TERMINAL,
+} from '../../data/hero';
+import ProfileAvatar from '../ui/ProfileAvatar';
+
+const fadeUp = (delay = 0, reduced = false) =>
+  reduced
+    ? { initial: { opacity: 1, y: 0 }, animate: { opacity: 1, y: 0 } }
+    : {
+        initial: { opacity: 0, y: 24 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+      };
+
+const terminalLineColor = {
+  command: 'text-emerald-400',
+  success: 'text-blue-300',
+  info: 'text-purple-300',
+  muted: 'text-gray-500',
+};
 
 const Hero = () => {
+  const reducedMotion = useReducedMotion();
+  const [typedLines, setTypedLines] = useState(0);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      setTypedLines(HERO_TERMINAL.length);
+      return;
+    }
+
+    const timers = HERO_TERMINAL.map((_, i) =>
+      setTimeout(() => setTypedLines((n) => Math.max(n, i + 1)), 600 + i * 450),
+    );
+
+    return () => timers.forEach(clearTimeout);
+  }, [reducedMotion]);
+
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
-        
-        {/* Floating Code Elements */}
-        <motion.div
-          className="absolute top-20 left-20 text-blue-400 opacity-30"
-          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-        >
-          <FaCode className="w-8 h-8" />
-        </motion.div>
-        <motion.div
-          className="absolute top-40 right-32 text-purple-400 opacity-30"
-          animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-        >
-          <FaCloud className="w-6 h-6" />
-        </motion.div>
-        <motion.div
-          className="absolute bottom-32 left-32 text-pink-400 opacity-30"
-          animate={{ y: [0, -15, 0], rotate: [0, 3, 0] }}
-          transition={{ duration: 5, repeat: Infinity, delay: 2 }}
-        >
-          <FaRocket className="w-7 h-7" />
-        </motion.div>
+    <section
+      id="home-section"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#070b14]"
+      aria-label="Introduction"
+    >
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-[#0f1423] to-[#1a1033]" />
+        <div
+          className="absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+          }}
+        />
+        <div className="absolute -top-32 -right-32 h-[28rem] w-[28rem] rounded-full bg-blue-600/20 blur-[100px] motion-safe:animate-blob" />
+        <div className="absolute -bottom-32 -left-32 h-[28rem] w-[28rem] rounded-full bg-purple-600/20 blur-[100px] motion-safe:animate-blob motion-safe:animation-delay-2000" />
+        <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-[80px] motion-safe:animate-blob motion-safe:animation-delay-4000" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          
-          {/* Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-sm font-medium mb-8"
-          >
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            Available for new opportunities
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              <span className="block">Jackson Mwakano</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mt-2">
-                Macharia
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 lg:pt-32 lg:pb-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
+          {/* Copy */}
+          <div className="text-center lg:text-left">
+            <motion.div
+              {...fadeUp(0, reducedMotion)}
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400 mb-6"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
               </span>
-            </h1>
-          </motion.div>
+              Open to full-time &amp; contract roles
+            </motion.div>
 
-          {/* Professional Tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-300 mb-4"
-          >
-            <span className="text-blue-400">Full-Stack Engineer</span> building cloud-native SaaS platforms
-          </motion.div>
+            <motion.div {...fadeUp(0.08, reducedMotion)}>
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-400/90 mb-3">
+                Full-Stack Engineer
+              </p>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+                Jackson{' '}
+                <span className="bg-gradient-to-r from-blue-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                  Macharia
+                </span>
+              </h1>
+            </motion.div>
 
-          {/* Dynamic Type Animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-xl sm:text-2xl font-medium text-gray-400 mb-6 h-12 flex items-center justify-center"
-          >
-            <TypeAnimation
-              sequence={[
-                'React • TypeScript • Next.js • Supabase • CI/CD',
-                3000,
-                'Multi-tenant Architecture • Real-time Systems • Cloud-Native',
-                3000,
-                'AI-Assisted Development • Performance Optimization • Security',
-                3000,
-              ]}
-              wrapper="span"
-              speed={50}
-              repeat={Infinity}
-              className="text-purple-400"
-            />
-          </motion.div>
+            <motion.p
+              {...fadeUp(0.16, reducedMotion)}
+              className="mt-5 text-lg sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              I build cloud-native SaaS platforms that scale — from architecture
+              and TypeScript frontends to CI/CD pipelines that ship with confidence.
+            </motion.p>
 
-          {/* Value Proposition */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="max-w-4xl mx-auto mb-8"
-          >
-            <p className="text-lg sm:text-xl text-gray-300 mb-4 leading-relaxed">
-              Currently leading <span className="text-blue-400 font-semibold">Nelimac Learning</span> (ed-tech SaaS), 
-              previously built <span className="text-purple-400 font-semibold">Trainswise-AI</span> and 
-              <span className="text-pink-400 font-semibold"> Job Connect</span> serving 15,000+ users globally.
-            </p>
-            <p className="text-base text-gray-400 mb-6">
-              I specialize in <span className="text-green-400 font-semibold">TypeScript, React, and CI/CD automation</span>. 
-              My backend experience translates seamlessly to .NET ecosystems, and I leverage AI tools responsibly to ship faster.
-            </p>
-          </motion.div>
+            <motion.div
+              {...fadeUp(0.22, reducedMotion)}
+              className="mt-4 h-8 sm:h-9 flex items-center justify-center lg:justify-start text-base sm:text-lg font-medium text-violet-300/90"
+            >
+              <TypeAnimation
+                sequence={HERO_TYPE_SEQUENCE}
+                wrapper="span"
+                speed={45}
+                repeat={Infinity}
+                className="inline-block"
+              />
+            </motion.div>
 
-          {/* Key Metrics */}
+            <motion.p
+              {...fadeUp(0.28, reducedMotion)}
+              className="mt-6 text-sm sm:text-base text-gray-400 max-w-lg mx-auto lg:mx-0 leading-relaxed"
+            >
+              Leading{' '}
+              <span className="text-blue-400 font-medium">Nelimac Learning</span>
+              {' · '}Previously{' '}
+              <span className="text-violet-400 font-medium">Trainswise-AI</span>
+              {' & '}
+              <span className="text-fuchsia-400 font-medium">Job Connect</span>
+              {' — '}15,000+ users worldwide.
+            </motion.p>
+
+            {/* Inline stats — quick scan; detailed stats live in CounterSection */}
+            <motion.div
+              {...fadeUp(0.34, reducedMotion)}
+              className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3"
+            >
+              {HERO_STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 backdrop-blur-sm"
+                >
+                  <div className="text-lg font-bold text-white leading-none">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-gray-400 mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              {...fadeUp(0.4, reducedMotion)}
+              className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3"
+            >
+              <a
+                href="#contact-section"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:from-blue-500 hover:to-violet-500 hover:shadow-blue-500/30 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
+              >
+                Start a Conversation
+                <FaArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0" />
+              </a>
+              <a
+                href="#projects-section"
+                className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
+              >
+                View Projects
+              </a>
+              <Link
+                to="/resume"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-7 py-3.5 text-sm font-semibold text-gray-300 transition hover:border-white/25 hover:text-white"
+              >
+                <FaDownload className="h-3.5 w-3.5" />
+                Resume
+              </Link>
+            </motion.div>
+
+            {/* Social */}
+            <motion.div
+              {...fadeUp(0.46, reducedMotion)}
+              className="mt-8 flex justify-center lg:justify-start gap-3"
+            >
+              {[
+                { href: 'https://github.com/Mash24', label: 'GitHub', Icon: FaGithub },
+                { href: 'https://www.linkedin.com/in/jackson-macharia/', label: 'LinkedIn', Icon: FaLinkedin },
+                { href: 'mailto:jackmwakano@gmail.com', label: 'Email', Icon: FaEnvelope },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  aria-label={label}
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Terminal + profile visual */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
+            {...fadeUp(0.2, reducedMotion)}
+            className="relative mx-auto w-full max-w-md lg:max-w-none"
           >
-            {[
-              { number: "15K+", label: "Users Served", icon: "👥" },
-              { number: "60%", label: "Faster Deployments", icon: "⚡" },
-              { number: "6+", label: "Production Apps", icon: "🚀" },
-              { number: "3+", label: "Years Experience", icon: "💼" }
-            ].map((metric, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/20 transition-all duration-300">
-                <div className="text-2xl mb-1">{metric.icon}</div>
-                <div className="text-2xl font-bold text-white">{metric.number}</div>
-                <div className="text-sm text-gray-300">{metric.label}</div>
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-blue-500/20 via-violet-500/10 to-fuchsia-500/20 blur-2xl" aria-hidden="true" />
+
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0d1117]/90 shadow-2xl shadow-black/40 backdrop-blur-xl">
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+                <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+                <span className="ml-2 text-xs font-medium text-gray-500">
+                  jackson@portfolio ~ deploy
+                </span>
               </div>
-            ))}
-          </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-          >
-            <a
-              href="#contact"
-              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2"
-            >
-              <HiSparkles className="w-5 h-5 group-hover:animate-pulse" />
-              Hire Me / Contact
-            </a>
-            <a
-              href="#projects"
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              View My Work
-            </a>
-            <a
-              href="/resume.pdf"
-              download="Jackson_Macharia_Resume.pdf"
-              className="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
-            >
-              <FaDownload className="w-4 h-4" />
-              Download Resume
-            </a>
-          </motion.div>
+              {/* Terminal body */}
+              <div className="space-y-2 p-5 font-mono text-xs sm:text-sm min-h-[200px]">
+                {HERO_TERMINAL.slice(0, typedLines).map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={reducedMotion ? false : { opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className={terminalLineColor[line.type]}
+                  >
+                    {line.text}
+                  </motion.div>
+                ))}
+                {typedLines < HERO_TERMINAL.length && (
+                  <span className="inline-block h-4 w-2 animate-pulse bg-emerald-400/80 motion-reduce:animate-none" />
+                )}
+              </div>
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex justify-center gap-6 mb-12"
-          >
-            <a
-              href="https://github.com/Mash24"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-300 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20"
-              title="GitHub"
-            >
-              <FaGithub className="w-6 h-6" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jackson-macharia/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-300 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20"
-              title="LinkedIn"
-            >
-              <FaLinkedin className="w-6 h-6" />
-            </a>
-            <a
-              href="mailto:jackmwakano@gmail.com"
-              className="text-gray-400 hover:text-white transition-colors duration-300 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20"
-              title="Email"
-            >
-              <FaEnvelope className="w-6 h-6" />
-            </a>
-          </motion.div>
+              {/* Stack chips */}
+              <div className="flex flex-wrap gap-2 border-t border-white/10 px-5 py-4">
+                {['React', 'TypeScript', 'Next.js', 'Supabase', 'Docker', 'GitHub Actions'].map(
+                  (tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium text-gray-400"
+                    >
+                      {tech}
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <HiArrowDown className="w-6 h-6 text-gray-400 animate-bounce" />
+            {/* Profile card */}
+            <motion.div
+              initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.5 }}
+              className="absolute -bottom-6 -left-4 sm:-left-8 flex items-center gap-3 rounded-xl border border-white/10 bg-[#0d1117]/95 px-4 py-3 shadow-xl backdrop-blur-md"
+            >
+              <ProfileAvatar
+                src="/images/about_1-3.jpg"
+                alt="Jackson Macharia"
+                className="h-12 w-12 rounded-lg object-cover ring-2 ring-blue-500/40"
+                initials="JM"
+              />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-white truncate">Jackson Macharia</p>
+                <p className="text-xs text-gray-400">Chiang Mai, Thailand · Remote</p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll cue */}
+      <motion.a
+        href="#about-section"
+        {...fadeUp(0.6, reducedMotion)}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-500 transition hover:text-gray-300 motion-reduce:hidden"
+        aria-label="Scroll to about section"
+      >
+        <span className="text-[10px] uppercase tracking-widest">Explore</span>
+        <HiArrowDown className="h-5 w-5 motion-safe:animate-bounce" />
+      </motion.a>
     </section>
   );
 };

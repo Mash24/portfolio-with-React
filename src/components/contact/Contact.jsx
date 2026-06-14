@@ -1,399 +1,398 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  FaGithub, 
-  FaLinkedin, 
-  FaEnvelope, 
-  FaPhone, 
-  FaMapMarkerAlt, 
-  FaReact, 
-  FaAws, 
-  FaNodeJs, 
-  FaCloud, 
-  FaCogs, 
-  FaDatabase,
-  FaRocket,
-  FaShieldAlt,
-  FaCode,
-  FaCalendarAlt,
-  FaClock,
-  FaCheckCircle,
-  FaArrowRight,
-  FaDownload
-} from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import {
+  ArrowRight,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Download,
+  Loader2,
+  Mail,
+  MapPin,
+  Send,
+  AlertCircle,
+} from 'lucide-react';
+import { getPrefillFromParams } from '../../data/services';
+import {
+  AVAILABILITY,
+  BUDGET_RANGES,
+  CONTACT_CHANNELS,
+  FORMSPREE_ENDPOINT,
+  INITIAL_FORM_STATE,
+  PROJECT_TYPES,
+  TIMELINE_OPTIONS,
+  submitContactForm,
+} from '../../data/contact';
+
+const inputClass =
+  'w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    projectType: '',
-    budget: '',
-    timeline: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+  const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const reducedMotion = useReducedMotion();
 
-  const projectTypes = [
-    'SaaS Platform Development',
-    'Full-Stack Web Application',
-    'Cloud Architecture & DevOps',
-    'CI/CD Pipeline Setup',
-    'Technical Consulting',
-    'Code Review & Optimization',
-    'Team Training & Mentoring',
-    'Other'
-  ];
+  useEffect(() => {
+    const prefill = getPrefillFromParams(searchParams);
+    if (!prefill) return;
 
-  const budgetRanges = [
-    '$2,500 - $5,000',
-    '$5,000 - $10,000',
-    '$10,000 - $25,000',
-    '$25,000+',
-    'Let\'s discuss'
-  ];
+    setFormData((prev) => ({
+      ...prev,
+      projectType: prefill.projectType || prev.projectType,
+      budget: prefill.budget || prev.budget,
+      timeline: prefill.timeline || prev.timeline,
+      message: prefill.message || prev.message,
+    }));
 
-  const timelineOptions = [
-    'ASAP (Rush project)',
-    '1-2 weeks',
-    '1 month',
-    '2-3 months',
-    '3+ months',
-    'Flexible'
-  ];
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-    // Add your form submission logic here
-  };
+    if (searchParams.has('plan') || searchParams.has('hire') || searchParams.has('type')) {
+      setSearchParams({}, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (status === 'error') {
+      setStatus('idle');
+      setErrorMessage('');
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const result = await submitContactForm(formData);
+      setStatus('success');
+      if (result.method === 'formspree') {
+        setFormData(INITIAL_FORM_STATE);
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMessage(err.message || 'Something went wrong. Please email directly.');
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-xl"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
+    <section
+      id="contact-section"
+      className="py-20 lg:py-24 bg-gray-50 dark:bg-gray-900/40"
+      aria-label="Contact"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl mb-10 lg:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium mb-6">
-            <FaEnvelope className="w-4 h-4" />
-            Let's Work Together
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Build Something Amazing?</span>
+          <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
+            <Mail className="h-4 w-4" />
+            Contact
+          </span>
+          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Let&apos;s work together
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Let's discuss your project requirements and create a solution that scales with your business. 
-            I'm available for freelance projects, consulting, and full-time opportunities.
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            Full-time roles, contract work, or scoped projects — tell me what you&apos;re building
+            and I&apos;ll reply within 24 hours.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
-          {/* Contact Form */}
+        <div className="grid gap-10 lg:grid-cols-5 lg:gap-12">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8"
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-3"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Start Your Project</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              {/* Name and Email */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div className="relative">
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
-                    placeholder="Your Email"
-                    required
-                  />
-                </div>
-              </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                Send a message
+              </h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                {FORMSPREE_ENDPOINT
+                  ? 'Delivered securely via Formspree.'
+                  : 'Opens your email client — add VITE_FORMSPREE_FORM_ID for in-page delivery.'}
+              </p>
 
-              {/* Company */}
-              <div className="relative">
-                <input
-                  type="text"
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors"
-                  placeholder="Company/Organization (Optional)"
-                />
-              </div>
-
-              {/* Project Type */}
-              <div className="relative">
-                <select
-                  id="projectType"
-                  name="projectType"
-                  value={formData.projectType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-400 transition-colors"
-                  required
-                >
-                  <option value="" className="bg-gray-800">Select Project Type</option>
-                  {projectTypes.map((type) => (
-                    <option key={type} value={type} className="bg-gray-800">{type}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Budget and Timeline */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-400 transition-colors"
-                    required
-                  >
-                    <option value="" className="bg-gray-800">Budget Range</option>
-                    {budgetRanges.map((range) => (
-                      <option key={range} value={range} className="bg-gray-800">{range}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="relative">
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-400 transition-colors"
-                    required
-                  >
-                    <option value="" className="bg-gray-800">Project Timeline</option>
-                    {timelineOptions.map((timeline) => (
-                      <option key={timeline} value={timeline} className="bg-gray-800">{timeline}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Message */}
-              <div className="relative">
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="5"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 transition-colors resize-none"
-                  placeholder="Tell me about your project, goals, and any specific requirements..."
-                  required
-                />
-              </div>
-
-              {/* Submit Button */}
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-              >
-                <FaRocket className="w-5 h-5" />
-                Send Project Inquiry
-              </motion.button>
-
-              {submitted && (
+              {status === 'success' ? (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-center"
+                  className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-center dark:border-emerald-500/30 dark:bg-emerald-500/10"
+                  role="status"
                 >
-                  <FaCheckCircle className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                  <p className="text-green-400 font-semibold">Thank you! I'll get back to you within 24 hours.</p>
+                  <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-600 dark:text-emerald-400 mb-3" />
+                  <p className="font-semibold text-emerald-800 dark:text-emerald-300">
+                    Message sent — thank you!
+                  </p>
+                  <p className="mt-2 text-sm text-emerald-700 dark:text-emerald-400/90">
+                    I&apos;ll get back to you within 24 hours.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus('idle')}
+                    className="mt-4 text-sm font-medium text-emerald-700 underline hover:no-underline dark:text-emerald-400"
+                  >
+                    Send another message
+                  </button>
                 </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="name" className="sr-only">
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={inputClass}
+                        placeholder="Your name *"
+                        required
+                        autoComplete="name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="email" className="sr-only">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={inputClass}
+                        placeholder="Email address *"
+                        required
+                        autoComplete="email"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="sr-only">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="Company (optional)"
+                      autoComplete="organization"
+                    />
+                  </div>
+
+                  <fieldset className="rounded-xl border border-gray-100 p-4 dark:border-gray-800">
+                    <legend className="px-1 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Project details (optional)
+                    </legend>
+                    <div className="mt-3 space-y-4">
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleChange}
+                        className={inputClass}
+                      >
+                        <option value="">Project type</option>
+                        {PROJECT_TYPES.map((type) => (
+                          <option key={type} value={type}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        <select
+                          id="budget"
+                          name="budget"
+                          value={formData.budget}
+                          onChange={handleChange}
+                          className={inputClass}
+                        >
+                          <option value="">Budget range</option>
+                          {BUDGET_RANGES.map((range) => (
+                            <option key={range} value={range}>
+                              {range}
+                            </option>
+                          ))}
+                        </select>
+                        <select
+                          id="timeline"
+                          name="timeline"
+                          value={formData.timeline}
+                          onChange={handleChange}
+                          className={inputClass}
+                        >
+                          <option value="">Timeline</option>
+                          {TIMELINE_OPTIONS.map((timeline) => (
+                            <option key={timeline} value={timeline}>
+                              {timeline}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <div>
+                    <label htmlFor="message" className="sr-only">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      rows={5}
+                      className={`${inputClass} resize-none`}
+                      placeholder="Tell me about your project, role, or goals *"
+                      required
+                    />
+                  </div>
+
+                  {status === 'error' && (
+                    <div
+                      className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-400"
+                      role="alert"
+                    >
+                      <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {status === 'loading' ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" />
+                        Send message
+                      </>
+                    )}
+                  </button>
+                </form>
               )}
-            </form>
+            </div>
           </motion.div>
 
-          {/* Contact Info & Quick Actions */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+          <motion.aside
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="lg:col-span-2 space-y-6"
           >
-            
-            {/* Quick Contact */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Quick Contact</h3>
-              <div className="space-y-4">
-                <a
-                  href="mailto:jackmwakano@gmail.com"
-                  className="flex items-center gap-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                    <FaEnvelope className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">Email Me</p>
-                    <p className="text-gray-400 text-sm">jackmwakano@gmail.com</p>
-                  </div>
-                  <FaArrowRight className="w-4 h-4 text-gray-400 ml-auto group-hover:text-blue-400 transition-colors" />
-                </a>
-
-                <a
-                  href="tel:+66952819402"
-                  className="flex items-center gap-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
-                    <FaPhone className="w-6 h-6 text-green-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">Call Me</p>
-                    <p className="text-gray-400 text-sm">+66 95 281 9402</p>
-                  </div>
-                  <FaArrowRight className="w-4 h-4 text-gray-400 ml-auto group-hover:text-green-400 transition-colors" />
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/jackson-macharia/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
-                    <FaLinkedin className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold">LinkedIn</p>
-                    <p className="text-gray-400 text-sm">Connect professionally</p>
-                  </div>
-                  <FaArrowRight className="w-4 h-4 text-gray-400 ml-auto group-hover:text-blue-400 transition-colors" />
-                </a>
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-6 dark:border-emerald-500/30 dark:bg-emerald-500/10">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                </span>
+                <span className="font-semibold text-emerald-800 dark:text-emerald-300">
+                  {AVAILABILITY.status}
+                </span>
+              </div>
+              <p className="text-sm text-emerald-900/80 dark:text-emerald-400/90 mb-4">
+                Response time:{' '}
+                <strong className="font-semibold">{AVAILABILITY.responseTime}</strong>
+              </p>
+              <div className="grid grid-cols-2 gap-3 text-xs text-emerald-800/90 dark:text-emerald-400/80">
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  {AVAILABILITY.location}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5" />
+                  Flexible hours
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" />
+                  {AVAILABILITY.modes.join(' · ')}
+                </span>
               </div>
             </div>
 
-            {/* Availability Status */}
-            <div className="bg-gradient-to-r from-green-600/20 to-blue-600/20 border border-green-500/30 rounded-2xl p-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <h3 className="text-xl font-bold text-white">Currently Available</h3>
-              </div>
-              <p className="text-gray-300 mb-6">
-                I'm actively taking on new projects and consulting opportunities. 
-                Response time: <span className="text-green-400 font-semibold">within 24 hours</span>
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center gap-2 text-gray-300">
-                  <FaClock className="w-4 h-4 text-blue-400" />
-                  <span>Flexible Hours</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <FaMapMarkerAlt className="w-4 h-4 text-blue-400" />
-                  <span>Chiang Mai, Thailand</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <FaCalendarAlt className="w-4 h-4 text-blue-400" />
-                  <span>Remote & On-site</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <FaRocket className="w-4 h-4 text-blue-400" />
-                  <span>Quick Start</span>
-                </div>
-              </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4">
+                Direct contact
+              </h3>
+              <ul className="space-y-3">
+                {CONTACT_CHANNELS.map((channel) => (
+                  <li key={channel.id}>
+                    <a
+                      href={channel.href}
+                      target={channel.href.startsWith('http') ? '_blank' : undefined}
+                      rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="group flex items-center gap-3 rounded-xl border border-transparent p-3 transition hover:border-gray-200 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800/50"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                          {channel.label}
+                        </p>
+                        <p className="truncate text-xs text-gray-500 dark:text-gray-400">
+                          {channel.value}
+                        </p>
+                      </div>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-gray-400 transition group-hover:translate-x-0.5 group-hover:text-blue-500" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Download Resume */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-bold text-white mb-4">Get My Resume</h3>
-              <p className="text-gray-300 mb-6">
-                Download my latest resume with detailed experience and project portfolio.
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center dark:border-gray-800 dark:bg-gray-900">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Resume</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                Print-friendly page — save as PDF from your browser.
               </p>
-              <a
-                href="/resume.pdf"
-                download="Jackson_Macharia_Resume.pdf"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+              <Link
+                to="/resume"
+                className="inline-flex items-center gap-2 rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-semibold text-gray-900 transition hover:border-blue-300 hover:text-blue-600 dark:border-gray-700 dark:text-white dark:hover:border-blue-500/40 dark:hover:text-blue-400"
               >
-                <FaDownload className="w-4 h-4" />
-                Download Resume
-              </a>
+                <Download className="h-4 w-4" />
+                View resume
+              </Link>
             </div>
 
-          </motion.div>
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-2xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Let's Build Something That Matters</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Whether you're a startup looking to build your MVP or an enterprise needing to scale your platform, 
-              I'm here to help you achieve your goals with production-ready solutions.
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+              Explore{' '}
+              <a href="#services-section" className="font-medium text-blue-600 hover:underline dark:text-blue-400">
+                services
+              </a>{' '}
+              or{' '}
+              <a href="#projects-section" className="font-medium text-blue-600 hover:underline dark:text-blue-400">
+                projects
+              </a>{' '}
+              before reaching out.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#services"
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
-              >
-                <FaCode className="w-5 h-5" />
-                View Services
-              </a>
-              <a
-                href="#projects"
-                className="px-8 py-4 bg-transparent border-2 border-white/30 text-white rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaRocket className="w-5 h-5" />
-                See My Work
-              </a>
-            </div>
-          </div>
-        </motion.div>
-
+          </motion.aside>
+        </div>
       </div>
     </section>
   );
 };
 
-export default Contact; 
+export default Contact;

@@ -13,11 +13,11 @@ import Footer from '../components/layout/Footer'
 
 const Home = () => {
   return (
-    <>
+    <div id="main-content">
       <Navbar />
       <Hero />
-      <CounterSection />
       <About />
+      <CounterSection />
       <Experience />
       <MySkills />
       <Projects />
@@ -26,7 +26,7 @@ const Home = () => {
       <Blog />
       <Contact />
       <Footer />
-    </>
+    </div>
   )
 }
 

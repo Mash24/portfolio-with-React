@@ -1,4 +1,4 @@
-# Jackson Mwakano Macharia - Portfolio Website
+# Jackson Macharia - Portfolio Website
 
 A modern, professional portfolio website showcasing expertise as a top-tier full-stack engineer and founder-level builder. Built with React, Vite, TailwindCSS, and Framer Motion.
 
@@ -187,7 +187,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Jackson Mwakano Macharia**
+**Jackson Macharia**
 - **Email**: jackmwakano@gmail.com
 - **Phone**: +66 95 281 9402
 - **Location**: Chiang Mai, Thailand
@@ -207,4 +207,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⭐ **Star this repository if you found it helpful!**
 
-Built with ❤️ by Jackson Mwakano Macharia
+Built with ❤️ by Jackson Macharia

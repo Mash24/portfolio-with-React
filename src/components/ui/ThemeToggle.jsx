@@ -3,27 +3,31 @@ import { motion } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../../contexts/ThemeContext';
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ onDarkBackground = false }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <motion.button
+      type="button"
       onClick={toggleTheme}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="relative w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition-colors duration-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`relative h-10 w-10 rounded-xl flex items-center justify-center transition-colors duration-300 backdrop-blur-sm border ${
+        onDarkBackground
+          ? 'bg-white/10 hover:bg-white/20 border-white/20 text-white'
+          : 'bg-black/10 dark:bg-white/10 hover:bg-black/15 dark:hover:bg-white/15 border-black/5 dark:border-white/10 text-gray-700 dark:text-gray-200'
+      }`}
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       <motion.div
         initial={false}
         animate={{ rotate: theme === 'light' ? 0 : 180 }}
         transition={{ duration: 0.3 }}
-        className="text-gray-600 dark:text-gray-300"
       >
         {theme === 'light' ? (
-          <FaSun className="w-5 h-5" />
+          <FaSun className="w-4 h-4" />
         ) : (
-          <FaMoon className="w-5 h-5" />
+          <FaMoon className="w-4 h-4" />
         )}
       </motion.div>
     </motion.button>
